@@ -440,6 +440,86 @@
     .luna-flip {
       transform: rotate(360deg) scale(1.25);
     }
+    .runner-stage {
+      position: relative;
+      width: 100%;
+      height: 190px;
+      background: linear-gradient(180deg, #020617 0%, #1e1b4b 75%, #f59e0b 75%, #fde68a 88%, #d97706 100%);
+      border: 2px solid #facc15;
+      border-radius: 16px;
+      overflow: hidden;
+      margin: 0.85rem 0;
+      cursor: pointer;
+      user-select: none;
+    }
+    .runner-hero {
+      position: absolute;
+      bottom: 42px;
+      left: 36px;
+      font-size: 2.5rem;
+      transition: bottom 0.08s linear;
+      user-select: none;
+    }
+    .runner-obstacle {
+      position: absolute;
+      bottom: 42px;
+      left: 90%;
+      font-size: 2.2rem;
+      user-select: none;
+    }
+    .runner-ring-label {
+      position: absolute;
+      bottom: 6px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: 0.06em;
+    }
+    .pizza-order-box {
+      background: rgba(2, 6, 23, 0.75);
+      border: 2px solid #facc15;
+      border-radius: 16px;
+      padding: 0.9rem;
+      margin: 0.75rem 0;
+    }
+    .pizza-plate {
+      min-height: 58px;
+      background: radial-gradient(circle, #fde047 45%, #d97706 70%, #78350f 100%);
+      border-radius: 999px;
+      max-width: 240px;
+      margin: 0.65rem auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      font-size: 1.9rem;
+      border: 3px solid #fef08a;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+    .topping-btns {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.45rem;
+      margin-top: 0.6rem;
+    }
+    .topping-btn {
+      padding: 0.5rem 0.8rem;
+      font-size: 1.1rem;
+      font-weight: 800;
+      border-radius: 10px;
+      border: 2px solid #facc15;
+      background: #1e293b;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.1s ease, background 0.2s;
+    }
+    .topping-btn:hover {
+      background: #334155;
+      transform: scale(1.06);
+    }
     .movie-box {
       background: linear-gradient(135deg, #090d16, #1e1b4b);
       border: 4px solid #facc15;
@@ -561,7 +641,7 @@
         <div class="hero-actions">
           <a href="#movie" class="btn btn-glow">🎬 Watch My Space Video!</a>
           <a href="#book" class="btn btn-secondary">📖 Read "Captain Minion" Book</a>
-          <a href="#game" class="btn btn-secondary">🎮 Play 8 Space Games</a>
+          <a href="#game" class="btn btn-secondary">🎮 Play 10 Space Games</a>
         </div>
       </div>
     </section>
@@ -850,6 +930,49 @@
             <button class="ctrl-btn" style="background:#facc15;" onclick="doLunaFlip()">🤸 Do Backflip!</button>
             <button class="ctrl-btn" onclick="feedLuna('🍕')">🍕 Feed Space Pizza</button>
             <button class="ctrl-btn" style="background:#f472b6;" onclick="feedLuna('🍦')">🍦 Feed Ice Cream</button>
+          </div>
+        </div>
+
+        <!-- Game 9: Saturn Ring Runner -->
+        <div class="memory-box">
+          <h3>🪐🏃 Game 9: Saturn Ring Runner!</h3>
+          <p>Run fast across Saturn's icy rings! Click Jump to leap over 🦈 Sharks &amp; ☄️ Meteors and grab 🍕 Pizza!</p>
+          <div class="scoreboard">
+            <span>🏅 Score: <strong id="runner-score">0</strong></span>
+            <span id="runner-msg">Press Start!</span>
+          </div>
+          <div class="runner-stage" id="runner-stage" onclick="jumpRunner()">
+            <div id="runner-hero" class="runner-hero">🏃‍♂️</div>
+            <div id="runner-obstacle" class="runner-obstacle">🍕</div>
+            <div class="runner-ring-label">🪐 SATURN'S ICY RING TRACK 🪐</div>
+          </div>
+          <div class="dodge-controls">
+            <button class="ctrl-btn" style="background:#4ade80;" onclick="jumpRunner()">🦘 Jump!</button>
+            <button class="ctrl-btn" style="background:#facc15;" onclick="startRunnerGame()">▶️ Start / Reset</button>
+          </div>
+        </div>
+
+        <!-- Game 10: Space Pizza Chef -->
+        <div class="dodge-box">
+          <h3>🍕👨‍🍳 Game 10: Space Pizza Chef!</h3>
+          <p>Bake custom Space Pizzas for Luna, the Minions, the Smurfs &amp; the Saturn Alien by clicking the right toppings!</p>
+          <div class="scoreboard">
+            <span>🍕 Pizzas: <strong id="chef-score">0</strong></span>
+            <span id="chef-msg">Match the order!</span>
+          </div>
+          <div class="pizza-order-box">
+            <div id="chef-customer" style="font-size:1.25rem; font-weight:800; color:#fde047;">🐱 Luna wants: 🧀 + 🍄 + 🍅</div>
+            <div id="pizza-plate" class="pizza-plate">🍕</div>
+          </div>
+          <div class="topping-btns">
+            <button class="topping-btn" onclick="addTopping('🧀')">🧀 Cheese</button>
+            <button class="topping-btn" onclick="addTopping('🍄')">🍄 Mushroom</button>
+            <button class="topping-btn" onclick="addTopping('🍅')">🍅 Tomato</button>
+            <button class="topping-btn" onclick="addTopping('🍍')">🍍 Pineapple</button>
+            <button class="topping-btn" onclick="addTopping('🍦')">🍦 Ice Cream</button>
+          </div>
+          <div class="dodge-controls" style="margin-top:0.65rem;">
+            <button class="ctrl-btn" style="background:#facc15;" onclick="newPizzaOrder()">🔄 New Order</button>
           </div>
         </div>
       </div>
@@ -1642,6 +1765,115 @@
       document.getElementById('luna-status').textContent = '😻 YUM! Luna ate ' + food + ' and recharged to ' + lunaEnergy + '% energy!';
     }
 
+    // --- Game 9: Saturn Ring Runner ---
+    let runnerScore = 0;
+    let runnerTimer = null;
+    let obsX = 90;
+    let isJumping = false;
+    let currentObs = '🦈';
+    const runnerHazards = ['🦈', '☄️'];
+    const runnerBonuses = ['🍕', '💎', '🍦'];
+
+    function jumpRunner() {
+      if (isJumping) return;
+      isJumping = true;
+      const hero = document.getElementById('runner-hero');
+      hero.style.bottom = '115px';
+      hero.textContent = '🤸‍♂️';
+      setTimeout(() => {
+        hero.style.bottom = '42px';
+        hero.textContent = '🏃‍♂️';
+        isJumping = false;
+      }, 520);
+    }
+
+    function spawnRunnerItem() {
+      obsX = 92;
+      const isHazard = Math.random() < 0.55;
+      currentObs = isHazard
+        ? runnerHazards[Math.floor(Math.random() * runnerHazards.length)]
+        : runnerBonuses[Math.floor(Math.random() * runnerBonuses.length)];
+      const el = document.getElementById('runner-obstacle');
+      el.textContent = currentObs;
+      el.style.left = obsX + '%';
+    }
+
+    function startRunnerGame() {
+      if (runnerTimer) clearInterval(runnerTimer);
+      runnerScore = 0;
+      document.getElementById('runner-score').textContent = '0';
+      document.getElementById('runner-msg').textContent = '🏃‍♂️ Run & Jump!';
+      spawnRunnerItem();
+      runnerTimer = setInterval(() => {
+        obsX -= 5;
+        const el = document.getElementById('runner-obstacle');
+        el.style.left = obsX + '%';
+        if (obsX <= 18 && obsX >= 8) {
+          const isHazard = runnerHazards.includes(currentObs);
+          if (isHazard && !isJumping) {
+            runnerScore = Math.max(0, runnerScore - 10);
+            document.getElementById('runner-msg').textContent = '💥 Tripped on ' + currentObs + ' (-10)!';
+            document.getElementById('runner-score').textContent = runnerScore;
+            spawnRunnerItem();
+          } else if (!isHazard) {
+            runnerScore += 15;
+            document.getElementById('runner-msg').textContent = '✨ Grabbed ' + currentObs + ' (+15)!';
+            document.getElementById('runner-score').textContent = runnerScore;
+            spawnRunnerItem();
+          }
+        }
+        if (obsX < -5) {
+          if (runnerHazards.includes(currentObs)) {
+            runnerScore += 10;
+            document.getElementById('runner-msg').textContent = '🦘 Leaped over ' + currentObs + ' (+10)!';
+            document.getElementById('runner-score').textContent = runnerScore;
+          }
+          spawnRunnerItem();
+        }
+      }, 75);
+    }
+
+    // --- Game 10: Space Pizza Chef ---
+    const pizzaCustomers = ['🐱 Luna', '💛 Minion', '🍄 Smurf', '👽 Saturn Alien'];
+    const allToppings = ['🧀', '🍄', '🍅', '🍍', '🍦'];
+    let targetOrder = [];
+    let currentPlate = [];
+    let chefScore = 0;
+
+    function newPizzaOrder() {
+      currentPlate = [];
+      targetOrder = [];
+      for (let i = 0; i < 3; i++) {
+        targetOrder.push(allToppings[Math.floor(Math.random() * allToppings.length)]);
+      }
+      const cust = pizzaCustomers[Math.floor(Math.random() * pizzaCustomers.length)];
+      document.getElementById('chef-customer').textContent = cust + ' wants: ' + targetOrder.join(' + ');
+      document.getElementById('pizza-plate').textContent = '🍕';
+      document.getElementById('chef-msg').textContent = 'Add 3 toppings!';
+    }
+
+    function addTopping(top) {
+      if (currentPlate.length >= 3) return;
+      currentPlate.push(top);
+      document.getElementById('pizza-plate').textContent = '🍕 ' + currentPlate.join(' ');
+      if (currentPlate.length === 3) {
+        const match = currentPlate.every((val, idx) => val === targetOrder[idx]);
+        if (match) {
+          chefScore++;
+          document.getElementById('chef-score').textContent = chefScore;
+          document.getElementById('chef-msg').textContent = '🎉 Delicious Space Pizza! +1!';
+          setTimeout(newPizzaOrder, 900);
+        } else {
+          document.getElementById('chef-msg').textContent = '😅 Oops! Try matching the order again!';
+          setTimeout(() => {
+            currentPlate = [];
+            document.getElementById('pizza-plate').textContent = '🍕';
+          }, 800);
+        }
+      }
+    }
+    newPizzaOrder();
+
     // --- Animated Space Video Player (5 Scenes) ---
     const movieScenes = [
       {
@@ -1968,7 +2200,7 @@
         heroBadge: "✨ Official Website ✨",
         heroTitle: "Hi! I'm Adam (Captain Minion)! 👋💛",
         heroSub: "I'm <strong>9 years old</strong> — Future Astronaut 👨‍🚀, Lego Builder 🧱, Fast Runner 🏃 &amp; Author of the <strong>Captain Minion</strong> Book 📖!",
-        heroBtns: ["🎬 Watch My Space Video!", "📖 Read \"Captain Minion\" Book", "🎮 Play 8 Space Games"],
+        heroBtns: ["🎬 Watch My Space Video!", "📖 Read \"Captain Minion\" Book", "🎮 Play 10 Space Games"],
         movieH2: "🎬 Captain Minion: The Animated Space Video!",
         movieHint: "Watch Captain Minion, his Minion sidekick, and Luna the Space Cat blast off from the underwater Lego base all the way to Saturn!",
         scenePills: ["1️⃣ 🦈 Ocean & Shark", "2️⃣ ☀️💨 Solar & Wind", "3️⃣ 🐱🍕 Luna Backflips", "4️⃣ 🍄⚡ Smurfs & Shield", "5️⃣ 🪐👽 Saturn Alien"],
@@ -2000,7 +2232,9 @@
           "🐱👽 Game 5: Luna vs. Alien Tic-Tac-Toe!",
           "🧱🎨 Game 6: Lego Pixel Builder!",
           "🪐🧠 Game 7: Captain Minion's Space Quiz!",
-          "🐱🍕 Game 8: Luna's Zero-Gravity Backflip!"
+          "🐱🍕 Game 8: Luna's Zero-Gravity Backflip!",
+          "🪐🏃 Game 9: Saturn Ring Runner!",
+          "🍕👨‍🍳 Game 10: Space Pizza Chef!"
         ],
         arcadeDescs: [
           "Move your Lego Spaceship left & right! Catch 🍕💎 (+10 pts) and dodge the 🦈 Shark!",
@@ -2009,7 +2243,9 @@
           "You are 🐱 Luna the Space Cat! Get 3 in a row before the 👽 Saturn Alien does!",
           "Pick a glowing Lego brick color and click the squares to build your own Lego art!",
           "Test your superpower knowledge about Saturn, Space Energy, Luna the Cat & Captain Minion!",
-          "Feed Luna the Space Cat pizza & ice cream to charge her energy, then make her do Zero-Gravity Backflips!"
+          "Feed Luna the Space Cat pizza & ice cream to charge her energy, then make her do Zero-Gravity Backflips!",
+          "Run fast across Saturn's icy rings! Click Jump to leap over 🦈 Sharks & ☄️ Meteors and grab 🍕 Pizza!",
+          "Bake custom Space Pizzas for Luna, the Minions, the Smurfs & the Saturn Alien by clicking the right toppings!"
         ],
         favH2: "💙 All My Favorite Things",
         favHint: "Click any card for a fun surprise!",
@@ -2041,7 +2277,7 @@
         heroBadge: "✨ Offizielle Webseite ✨",
         heroTitle: "Hallo! Ich bin Adam (Captain Minion)! 👋💛",
         heroSub: "Ich bin <strong>9 Jahre alt</strong> — Zukünftiger Astronaut 👨‍🚀, Lego-Baumeister 🧱, Schneller Läufer 🏃 &amp; Autor des <strong>Captain Minion</strong> Buchs 📖!",
-        heroBtns: ["🎬 Mein Weltraum-Video ansehen!", "📖 „Captain Minion“ Buch lesen", "🎮 8 Weltraum-Spiele spielen"],
+        heroBtns: ["🎬 Mein Weltraum-Video ansehen!", "📖 „Captain Minion“ Buch lesen", "🎮 10 Weltraum-Spiele spielen"],
         movieH2: "🎬 Captain Minion: Das animierte Weltraum-Video!",
         movieHint: "Sieh zu, wie Captain Minion, sein Minion-Freund und Weltraumkatze Luna von der Unterwasser-Lego-Basis bis zum Saturn starten!",
         scenePills: ["1️⃣ 🦈 Ozean & Hai", "2️⃣ ☀️💨 Sonne & Wind", "3️⃣ 🐱🍕 Lunas Saltos", "4️⃣ 🍄⚡ Schlümpfe & Schild", "5️⃣ 🪐👽 Saturn-Alien"],
@@ -2073,7 +2309,9 @@
           "🐱👽 Spiel 5: Luna gegen Alien Tic-Tac-Toe!",
           "🧱🎨 Spiel 6: Lego-Pixel-Baumeister!",
           "🪐🧠 Spiel 7: Captain Minions Weltraum-Quiz!",
-          "🐱🍕 Spiel 8: Lunas Schwerelosigkeits-Salto!"
+          "🐱🍕 Spiel 8: Lunas Schwerelosigkeits-Salto!",
+          "🪐🏃 Spiel 9: Saturn-Ring-Läufer!",
+          "🍕👨‍🍳 Spiel 10: Weltraum-Pizza-Koch!"
         ],
         arcadeDescs: [
           "Steuere dein Lego-Raumschiff nach links & rechts! Fange 🍕💎 (+10 Pkt.) und weiche dem 🦈 Hai aus!",
@@ -2082,7 +2320,9 @@
           "Du bist 🐱 Weltraumkatze Luna! Schaffe 3 in einer Reihe vor dem 👽 Saturn-Alien!",
           "Wähle eine leuchtende Lego-Farbe und klicke auf die Felder, um dein Lego-Kunstwerk zu bauen!",
           "Teste dein Superwissen über den Saturn, Weltraumenergie, Katze Luna & Captain Minion!",
-          "Füttere Katze Luna mit Pizza & Eis für neue Energie und lass sie Rückwärtssaltos machen!"
+          "Füttere Katze Luna mit Pizza & Eis für neue Energie und lass sie Rückwärtssaltos machen!",
+          "Renne schnell über die Saturnringe! Springe über 🦈 Haie & ☄️ Meteore und schnapp dir 🍕 Pizza!",
+          "Backe Weltraum-Pizza für Luna, die Minions, die Schlümpfe & das Saturn-Alien mit den richtigen Zutaten!"
         ],
         favH2: "💙 Alle meine Lieblingsdinge",
         favHint: "Klicke auf eine Karte für eine lustige Überraschung!",
@@ -2114,7 +2354,7 @@
         heroBadge: "✨ 官方個人網站 ✨",
         heroTitle: "嗨！我是 Adam（小小兵隊長 Captain Minion）！👋💛",
         heroSub: "我今年 <strong>9 歲</strong> — 未來的太空人 👨‍🚀、樂高小小建築師 🧱、跑步健將 🏃，也是《<strong>小小兵隊長</strong>》故事書的作者 📖！",
-        heroBtns: ["🎬 觀看我的太空動畫！", "📖 閱讀《小小兵隊長》故事書", "🎮 暢玩 8 款太空遊戲"],
+        heroBtns: ["🎬 觀看我的太空動畫！", "📖 閱讀《小小兵隊長》故事書", "🎮 暢玩 10 款太空遊戲"],
         movieH2: "🎬 小小兵隊長：太空大冒險動畫影片！",
         movieHint: "一起觀看小小兵隊長、小小兵夥伴與太空貓露娜（Luna）從海底樂高基地發射飛向土星！",
         scenePills: ["1️⃣ 🦈 深海與大白鯊", "2️⃣ ☀️💨 太陽能與風力", "3️⃣ 🐱🍕 露娜後空翻", "4️⃣ 🍄⚡ 藍色小精靈與護盾", "5️⃣ 🪐👽 土星外星人"],
@@ -2146,7 +2386,9 @@
           "🐱👽 遊戲 5：露娜大戰外星人井字遊戲！",
           "🧱🎨 遊戲 6：樂高像素創意畫板！",
           "🪐🧠 遊戲 7：小小兵隊長太空問答挑戰！",
-          "🐱🍕 遊戲 8：露娜的無重力後空翻！"
+          "🐱🍕 遊戲 8：露娜的無重力後空翻！",
+          "🪐🏃 遊戲 9：土星光環酷跑大賽！",
+          "🍕👨‍🍳 遊戲 10：太空披薩小小主廚！"
         ],
         arcadeDescs: [
           "左右移動你的樂高太空船！接住 🍕💎 (+10 分)，小心閃開 🦈 大白鯊！",
@@ -2155,7 +2397,9 @@
           "你是 🐱 太空貓露娜！搶在 👽 土星外星人之前連成 3 個一線！",
           "挑選發光的樂高積木顏色，點擊方格拼出你專屬的樂高像素作品！",
           "考考你對土星、太空能源、太空貓露娜與小小兵隊長的超級知識！",
-          "餵太空貓露娜吃披薩和冰淇淋補充能量，再讓她做出超酷的無重力後空翻！"
+          "餵太空貓露娜吃披薩和冰淇淋補充能量，再讓她做出超酷的無重力後空翻！",
+          "在土星冰環賽道上飛快奔跑！點擊跳躍閃過 🦈 大白鯊與 ☄️ 隕石，接住 🍕 披薩！",
+          "照著訂單點擊配料，為露娜、小小兵、藍色小精靈與土星外星人烤出美味太空披薩！"
         ],
         favH2: "💙 我最喜歡的事物",
         favHint: "點擊任何一張卡片，會有驚喜小動畫喔！",
@@ -2187,7 +2431,7 @@
         heroBadge: "✨ Offizielli Websiite ✨",
         heroTitle: "Grüezi! Ich bi de Adam (Captain Minion)! 👋💛",
         heroSub: "Ich bi <strong>9 Johr alt</strong> — Zuekünftige Astronaut 👨‍🚀, Lego-Baumeischter 🧱, Schnälle Renner 🏃 &amp; Autor vom <strong>Captain Minion</strong> Buech 📖!",
-        heroBtns: ["🎬 Miis Wältruum-Video luege!", "📖 „Captain Minion“ Buech läse", "🎮 8 Wältruum-Spiili spiile"],
+        heroBtns: ["🎬 Miis Wältruum-Video luege!", "📖 „Captain Minion“ Buech läse", "🎮 10 Wältruum-Spiili spiile"],
         movieH2: "🎬 Captain Minion: S animierte Wältruum-Video!",
         movieHint: "Lueg zue, wie de Captain Minion, siin Minion-Fründ und d Wältruum-Chatz Luna vo de Underwasser-Lego-Basis bis zum Saturn flüüged!",
         scenePills: ["1️⃣ 🦈 Meer & Hai", "2️⃣ ☀️💨 Sunne & Wind", "3️⃣ 🐱🍕 Luna Saltos", "4️⃣ 🍄⚡ Schlümpf & Schild", "5️⃣ 🪐👽 Saturn-Alien"],
@@ -2219,7 +2463,9 @@
           "🐱👽 Spiil 5: Luna gäge Alien Tic-Tac-Toe!",
           "🧱🎨 Spiil 6: Lego-Pixel-Baumeischter!",
           "🪐🧠 Spiil 7: Captain Minions Wältruum-Quiz!",
-          "🐱🍕 Spiil 8: Lunas Schwerelosigkeits-Salto!"
+          "🐱🍕 Spiil 8: Lunas Schwerelosigkeits-Salto!",
+          "🪐🏃 Spiil 9: Saturn-Ring-Seckler!",
+          "🍕👨‍🍳 Spiil 10: Wältruum-Pizza-Choch!"
         ],
         arcadeDescs: [
           "Stüüre diis Lego-Ruumschiff nach links & rächts! Fang 🍕💎 (+10 Pkt.) und wiich em 🦈 Hai uus!",
@@ -2228,7 +2474,9 @@
           "Du bisch d 🐱 Wältruum-Chatz Luna! Schaff 3 i einere Reihe vor em 👽 Saturn-Alien!",
           "Wähl e lüüchtendi Lego-Farb und chlick uf d Fälder, zum diis Lego-Chunschtwärch baue!",
           "Tescht diis Superwüsse über de Saturn, Wältruum-Energie, s Büsi Luna & de Captain Minion!",
-          "Gib de Wältruum-Chatz Luna Pizza & Glace für neui Energie und laa sie Rückwärtssaltos mache!"
+          "Gib de Wältruum-Chatz Luna Pizza & Glace für neui Energie und laa sie Rückwärtssaltos mache!",
+          "Seckle schnäll über d Saturnringe! Gump über 🦈 Haie & ☄️ Meteore und schnapp dir 🍕 Pizza!",
+          "Bach Wältruum-Pizza für d Luna, d Minions, d Schlümpf & s Saturn-Alien mit de richtige Zuetate!"
         ],
         favH2: "💙 Alli miini Lieblings-Sache",
         favHint: "Chlick uf e Charte für e luschtigi Überraschig!",
