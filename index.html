@@ -533,6 +533,7 @@
       <div class="lang-buttons">
         <button onclick="setLang('en')" id="lang-en" class="lang-btn active">🇬🇧 English</button>
         <button onclick="setLang('de')" id="lang-de" class="lang-btn">🇩🇪 Deutsch</button>
+        <button onclick="setLang('gsw')" id="lang-gsw" class="lang-btn">🇨🇭 Schwiizerdütsch</button>
         <button onclick="setLang('zh')" id="lang-zh" class="lang-btn">🇹🇼 中文</button>
       </div>
       <div class="theme-buttons">
@@ -1708,7 +1709,7 @@
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
         const utter = new SpeechSynthesisUtterance(movieScenes[currentScene].caption);
-        utter.lang = currentLang === 'de' ? 'de-DE' : (currentLang === 'zh' ? 'zh-TW' : 'en-US');
+        utter.lang = currentLang === 'gsw' ? 'de-CH' : (currentLang === 'de' ? 'de-DE' : (currentLang === 'zh' ? 'zh-TW' : 'en-US'));
         utter.rate = 0.95;
         utter.pitch = 1.1;
         window.speechSynthesis.speak(utter);
@@ -2178,13 +2179,205 @@
         hfH2: "🎉 跟 Adam 擊掌 High-Five！",
         hfP: "點擊按鈕，送給 Adam 一個熱情的空中擊掌！",
         footer: "🚀 由 9 歲的 Adam 親手打造 • 歡迎來到 Adam 的宇宙天地！"
+      },
+      gsw: {
+        logo: "🚀 Em Adam siis Universum",
+        themes: ["🪐 Wältruum-Blau", "🌊 Underwasser", "🌸 Früelig"],
+        nav: ["Über mich", "🎬 Wältruum-Video", "📖 Captain Minion Buech", "⚡ Energie-Spiil", "🎮 Spiili", "Lieblings-Sache"],
+        heroBadge: "✨ Offizielli Websiite ✨",
+        heroTitle: "Grüezi! Ich bi de Adam (Captain Minion)! 👋💛",
+        heroSub: "Ich bi <strong>9 Johr alt</strong> — Zuekünftige Astronaut 👨‍🚀, Lego-Baumeischter 🧱, Schnälle Renner 🏃 &amp; Autor vom <strong>Captain Minion</strong> Buech 📖!",
+        heroBtns: ["🎬 Miis Wältruum-Video luege!", "📖 „Captain Minion“ Buech läse", "🎮 8 Wältruum-Spiili spiile"],
+        movieH2: "🎬 Captain Minion: S animierte Wältruum-Video!",
+        movieHint: "Lueg zue, wie de Captain Minion, siin Minion-Fründ und d Wältruum-Chatz Luna vo de Underwasser-Lego-Basis bis zum Saturn flüüged!",
+        scenePills: ["1️⃣ 🦈 Meer & Hai", "2️⃣ ☀️💨 Sunne & Wind", "3️⃣ 🐱🍕 Luna Saltos", "4️⃣ 🍄⚡ Schlümpf & Schild", "5️⃣ 🪐👽 Saturn-Alien"],
+        movieBtns: ["⏸️ Video pausiere", "⏭️ Nächschti Szene", "🔊 Szene vorläse"],
+        aboutH2: "🌟 Über de Adam",
+        statLabels: ["Alter", "Superchraft", "Traumberuef", "Lieblingsplanet"],
+        statValues: ["9 Johr alt", "Underwasser tauche", "Astronaut", "Saturn"],
+        bookH2: "📖 Captain Minion (Buech mit 10 Kapitel!)",
+        bookHint: "Gschribe vom Autor Adam (Captain Minion) • Chlick uf es Kapitel (1–10) oder Wiiter & Zrugg!",
+        bookBtns: ["⬅️ Vorherigs Kapitel", "Nächschts Kapitel ➡️"],
+        energyH2: "⚡ Die mega Chraft vo de Energie!",
+        energyHint: "Energie bringt alles zum Bewege, Lüüchte und Wachse! Sie verschwindet nie – sie verwandlet sich nur.",
+        energyGameH3: "🔋 Suuberi-Energie-Spiil: Lad em Adam siini Ragete uuf!",
+        energyGameP: "Chlick uf die suubere Energiequelle, zum d Batterie uf 100 % lade und d Ragete zum Saturn schicke!",
+        powerBtns: ["☀️ Sunneliecht (+10%)", "💨 Windrad (+15%)", "🌊 Wasserchraft (+20%)"],
+        energyCards: [
+          ["☀️ Sunne-Energie", "Solarpanels fanged s Sunneliecht ii und mached drus Strom – sogar uf Ruumschiff!"],
+          ["💨 Wind-Energie", "De Wind dräit riisigi Windräder, zum suubere Strom für Hüüser und Schuele mache!"],
+          ["🌊 Wasser-Energie", "Schnälli Flüss und Meereswälle triibed Wasserturbine aa und mache Strom!"],
+          ["🏃 Ässens- & Bewegigs-Energie", "Feins Ässe wie Pizza git diim Körper Energie, demit du schnäll seckle und Sport mache chasch!"]
+        ],
+        gameH2: "🎮 Em Adam siini Spiil-Halle!",
+        g1Title: "🎯 Spiil 1: Wältruum-Klicker!",
+        g1Desc: "Chlick uf die flüügende Ziil, zum Wältruumpünkt für em Adam siini Ragete zum Saturn sammle!",
+        arcadeTitles: [
+          "🦈🚀 Spiil 2: Hai & Pizza Uuswiiche!",
+          "🧠💛 Spiil 3: Captain Minion Memory!",
+          "👽🪐 Spiil 4: Saturn-Krater-Pop!",
+          "🐱👽 Spiil 5: Luna gäge Alien Tic-Tac-Toe!",
+          "🧱🎨 Spiil 6: Lego-Pixel-Baumeischter!",
+          "🪐🧠 Spiil 7: Captain Minions Wältruum-Quiz!",
+          "🐱🍕 Spiil 8: Lunas Schwerelosigkeits-Salto!"
+        ],
+        arcadeDescs: [
+          "Stüüre diis Lego-Ruumschiff nach links & rächts! Fang 🍕💎 (+10 Pkt.) und wiich em 🦈 Hai uus!",
+          "Dräi zwei Charte um und find passendi Päärli vo de Luna, Minions, Pizza, Saturn & Aliens!",
+          "Chlick uf d 👽 Aliens & 💛 Minions i de Saturn-Krater (+10)! Chlick nöd uf de 🦈 Hai!",
+          "Du bisch d 🐱 Wältruum-Chatz Luna! Schaff 3 i einere Reihe vor em 👽 Saturn-Alien!",
+          "Wähl e lüüchtendi Lego-Farb und chlick uf d Fälder, zum diis Lego-Chunschtwärch baue!",
+          "Tescht diis Superwüsse über de Saturn, Wältruum-Energie, s Büsi Luna & de Captain Minion!",
+          "Gib de Wältruum-Chatz Luna Pizza & Glace für neui Energie und laa sie Rückwärtssaltos mache!"
+        ],
+        favH2: "💙 Alli miini Lieblings-Sache",
+        favHint: "Chlick uf e Charte für e luschtigi Überraschig!",
+        favCards: [
+          ["🧱 Mit Lego baue", "Ich liebe s, cooli Sache z baue und mit Lego z spiile!"],
+          ["🐱 Herziges Büsi (Chatze)", "Chatze sind miini absolute Lieblingstier uf de ganze Wält!"],
+          ["🍕 Feini Pizza", "Miis allerliebschte Ässe isch heissi Chääs-Pizza!"],
+          ["🍄 D Schlümpf & Gschichte", "Miini liebschte Trickfilmfigure und Guetnacht-Gschichte sind d Schlümpf!"],
+          ["💛 Minions", "Miini luschtigschte Lieblings-Filmfigure sind d Minions!"],
+          ["🏃 Seckle & Sport", "Seckle (Renne) isch miin Lieblingssport Nummer eis i de Schuel!"],
+          ["🌊 Underwasser-Superchraft", "Tüüf under Wasser tauche, schwümme und s Meer entdecke!"],
+          ["🚀 Wältruum", "Miis Traum-Abentüür isch mit ere Ragete i Wältruum flüüge!"],
+          ["👨‍🚀 Zuekünftige Astronaut", "Wänn ich gross bi, wott ich Astronaut wärde und d Stärne erforsche!"],
+          ["🪐 Saturn", "De Saturn mit siine riisige Iisringe isch miin Lieblingsplanet!"],
+          ["🍦 Feini Glace", "Miis liebschte süesse Dessert isch chalti, feini Glace!"],
+          ["🇹🇼 Taiwan", "Bsundere Ort: Taiwan und de berüehmti Turm Taipei 101!"],
+          ["🌸 Früelig", "De Früelig mit Blueme und warme Tääg isch miini Lieblings-Johresziit!"],
+          ["☀️ Summerferie", "Miini liebschte Ferie sind d Summerferie volle Abentüür!"],
+          ["🏠 Fründe dehei", "Mit miine Fründe bi mir dehei cooli Spiili spiile!"]
+        ],
+        hfH2: "🎉 Gib em Adam es High-Five!",
+        hfP: "Chlick uf de Chnopf, zum em Adam es virtuells High-Five schicke!",
+        footer: "🚀 Baut vom Adam (9 Johr alt) • Willkomme im Adam siim Universum!"
       }
     };
 
+    const gswBookPages = [
+      {
+        emoji: '🌊💛🧱',
+        title: 'Kapitel 1: Em Captain Minion siini gheimi Underwasser-Lego-Basis!',
+        text: 'Üsi Gschicht fängt tüüf under Wasser am Meeresbode aa! Mit siinere Underwasser-Superchraft händ de 9-jöhrig Held Captain Minion (Adam) und siin gäle Minion-Fründ es riisigs, super-starchs Ruumschiff komplett us Lego-Stei baut! Zum vom Meeresbode bis i Wältruum flüüge, bruuched sie die gröschti Superchraft im Universum: Energie!',
+        secret: '🌟 Em Captain Minion siis Wüsseschafts-Gheimnis: Energie cha nie us em Nüt entstoh oder verschwinde – sie wächslet nur ihri Form!'
+      },
+      {
+        emoji: '☀️🧱🛰️',
+        title: 'Kapitel 2: Die goldige Lego-Solarflügel uschlappe!',
+        text: 'Höch am Himmel isch üsi Sunne wie en riisige lüüchtende Füürball. S Sunneliecht bruucht nur 8 Minute bis uf d Ärde! De Captain Minion und siin Minion-Fründ chlapped riisigi goldigi Lego-Solarflügel uus, wo s Sunneliecht iifanged und diräkt i suubere Strom verwandled!',
+        secret: '🌟 Em Captain Minion siis Wüsseschafts-Gheimnis: Im Wältruum git s kei Steckdose! Drum bruuched Ruumschiff goldigi Solarflügel für Sunne-Energie!'
+      },
+      {
+        emoji: '💨🧱🚁',
+        title: 'Kapitel 3: De riisig Lego-Windpropäller am Himmel!',
+        text: 'Sobald s Lego-Ruumschiff us em Meer i Himmel schüüsst, drucked de Captain Minion und siin Minion-Fründ en rote Lego-Chnopf und fahred en riisige Windpropäller uus! Höch i de Wulche dräit de starchi Wind d Propällerblätter und ladet s Ruumschiff mit suuberer Windchraft uuf!',
+        secret: '🌟 Em Captain Minion siis Wüsseschafts-Gheimnis: Je höcher diin Windpropäller i Himmel stiigt, desto stärcher und schnäller blost de Wind!'
+      },
+      {
+        emoji: '🦈🌊🧱',
+        title: 'Kapitel 4: Flucht vor em Riisehai mit Meeres-Energie!',
+        text: 'Plötzlich entdeckt tüüf under Wasser en riisige hungrige Hai de Captain Minion und jagt sie! Blitzschnäll stüüret de Captain Minion s Lego-Ruumschiff i e starchi Meeresströmig! S ruuschende Wasser dräit d Hydro-Turbine, macht gwaltigi Wasser-Energie und loht sie schnäller als de Hai devoflitze!',
+        secret: '🌟 Em Captain Minion siis Wüsseschafts-Gheimnis: Will Wasser 800-mol dichter isch als Luft, händ Meeresströmige gnueg Wasserchraft, zum jedem Hai devoschwümme!'
+      },
+      {
+        emoji: '🍕💛🚀',
+        title: 'Kapitel 5: Em Captain Minion siin Super-Wältruum-Pizza-Triibstoff!',
+        text: 'Nach de Flucht vor em Hai überchömed de Captain Minion und siin Minion-Fründ mega Hunger! Sie bached e heissi, chääsigi Super-Pizza im Lego-Ruumschiff-Ofe! Pizza steckt volle gspiichereter Energie, wo ihri Muskle mit Bewegigs-Energie uufladet, demit sie schnäll seckle und s Schiff stüüre chönd!',
+        secret: '🌟 Em Captain Minion siis Wüsseschafts-Gheimnis: Sogar wänn de Captain Minion e Schlümpf-Gschicht liist, bruucht siis Hirni 20 % vo siinere Pizza-Energie nur zum Dänke!'
+      },
+      {
+        emoji: '🐱🌙👨‍🚀',
+        title: 'Kapitel 6: D Luna, s Schwerelosigkeits-Wältruum-Büsi!',
+        text: 'A Bord vom Lego-Ruumschiff läbt d Luna, d Wältruum-Chatz mit ihrem chliine Astronautehelm! D Luna macht am sunnige Fänschter es warms Schläfli, zum Energie sammle. Dänn – ZACK! – macht d Luna cooli Rückwärtssaltos i de Schwerelosigkeit quer dur d Kabine, während de Minion jublet!',
+        secret: '🌟 Em Captain Minion siis Wüsseschafts-Gheimnis: D Hinterbei vo de Luna funktioniered wie Sprungfädere und spiichered elastischi Energie für ihre Rückwärtssalto!'
+      },
+      {
+        emoji: '🛡️⚡💛',
+        title: 'Kapitel 7: De lüüchtendi Elektro-Schild im Gwittersturm!',
+        text: 'Wo s Lego-Ruumschiff höcher flüügt, suuset s i e blitzendi Gwitterwulche! Wo en riisige Blitz uf s Schiff zueschüüsst, druckt de Minion de blaui Chnopf und schaltet es lüüchtends elektrischs Schutzschild ii, wo d Blitze wie Pingpong-Bäll abpralled!',
+        secret: '🌟 Em Captain Minion siis Wüsseschafts-Gheimnis: En einzige Blitz isch füüfmol heisser als d Sunneoberflächi und hät gnueg Strom, zum 100.000 Brotschiibe toaschte!'
+      },
+      {
+        emoji: '🍄🌋⚡',
+        title: 'Kapitel 8: D Schlümpf & de warmi Vulkan!',
+        text: 'Vor em Flug is tüüfe Wältall landed de Captain Minion und siin Minion-Fründ imene gheime Schlumpfdorf näbeme warme Vulkan! D Schlümpf zeiged ihne, wie d Ärdwärmi tüüf under üsne Füess ihri Pilzhüüser wärmt und Dampf macht, zum s Ruumschiff uuflade!',
+        secret: '🌟 Em Captain Minion siis Wüsseschafts-Gheimnis: Anderscht als Sunne- oder Windchraft funktioniert die underirdischi Vulkanwärmi vo de Ärde 24 Stund am Tag!'
+      },
+      {
+        emoji: '🧱💎🔋',
+        title: 'Kapitel 9: Lüüchtendi blaui Lego-Power-Stei!',
+        text: 'Was passiert im dunkle Wältruum wiit wäg vo de Sunne? De Captain Minion baut en Turm us lüüchtende blaue Lego-Power-Stei! Die Super-Batterie spiichered de ganzi Sunne-, Wind-, Wasser- und Vulkanstrom und lüüchted im Dunkle bis zum Saturn!',
+        secret: '🌟 Em Captain Minion siis Wüsseschafts-Gheimnis: Ingenieure i de Schwiiz und uf de Ärde bruuched au „Wasserbatterie“ i de Bärge, wo Wasser uufepumped!'
+      },
+      {
+        emoji: '👽🪐🧱',
+        title: 'Kapitel 10: Landig uf em Saturn & Träffe mit em Alien!',
+        text: 'Jetzt startet die gröschti Mission: de Flug mit em riisige Lego-Ruumschiff bis zum Saturn! Wo sie ändlich uf de glitzernde Iisringe vom Saturn landed, gumpet es fründlichs Saturn-Alien füre, winkt ihne und teilt kosmischi Ring-Energie!',
+        secret: '🌟 Em Captain Minion siis Wüsseschafts-Gheimnis: Im Wältruum git s kei Luft, wo brämst – drum schwebt s Lego-Ruumschiff fascht ohni Triibstoff bis zum Saturn!'
+      }
+    ];
+
+    const gswMovieScenes = [
+      {
+        title: '🎬 Szene 1 vo 5: Underwasser-Basis & Riisehai-Jagd!',
+        caption: '🌊 Tüüf under Wasser bruuched de Captain Minion und siin Minion-Fründ Meeres-Energie, zum mit em Lego-Ruumschiff em hungrige Hai devoflitze!',
+        bg1: '#0284c7', bg2: '#0f172a'
+      },
+      {
+        title: '🎬 Szene 2 vo 5: Goldigi Solarflügel & Windpropäller!',
+        caption: '☀️💨 Ab i sunnige Himmel! S Lego-Ruumschiff chlappt goldigi Solarflügel uus und dräit siin riisige Windpropäller i de Wulche!',
+        bg1: '#38bdf8', bg2: '#1d4ed8'
+      },
+      {
+        title: '🎬 Szene 3 vo 5: Wältruum-Pizza & Lunas Rückwärtssaltos!',
+        caption: '🐱🍕 I de Kabine bacht de Captain Minion heissi Pizza, während s Wältruum-Büsi Luna cooli Rückwärtssaltos i de Schwerelosigkeit macht!',
+        bg1: '#312e81', bg2: '#090d16'
+      },
+      {
+        title: '🎬 Szene 4 vo 5: Schlumpf-Vulkan & Elektro-Blitzschild!',
+        caption: '🍄⚡ Nach em Uuflade am warme Vulkan vo de Schlümpf loht s lüüchtende Elektroschild Gwitterblitze wie Pingpong-Bäll abpralle!',
+        bg1: '#1e1b4b', bg2: '#020617'
+      },
+      {
+        title: '🎬 Szene 5 vo 5: Landig uf em Saturn & s Alien!',
+        caption: '🪐👽 Aatribe vo blaue Lego-Power-Stei landet de Captain Minion uf de Saturnringe und git em fründliche Saturn-Alien es High-Five!',
+        bg1: '#090d16', bg2: '#000000'
+      }
+    ];
+
+    const gswQuizQuestions = [
+      {
+        q: '🪐 Weli Planet hät riisigi glitzerndi Iisringe, wo de Captain Minion s Alien trifft?',
+        options: ['🪐 Saturn', '🔴 Mars', '🪨 Merkur'],
+        answer: 0
+      },
+      {
+        q: '☀️ Was fangt am Lego-Ruumschiff s Sunneliecht ii und macht drus Strom?',
+        options: ['🍕 Chääs-Pizza', '🛰️ Goldigi Lego-Solarflügel', '🦈 Riisehai'],
+        answer: 1
+      },
+      {
+        q: '🐱 Wele coole Trick macht s Wältruum-Büsi Luna nach ihrem Schläfli?',
+        options: ['🤸 Rückwärtssaltos i de Schwerelosigkeit', '🚗 Postauto fahre', '❄️ Schneemaa baue'],
+        answer: 0
+      },
+      {
+        q: '🍄 Wie bhalted d Schlümpf ihri Pilzhüüser Tag und Nacht warm?',
+        options: ['🍦 Chalti Glace', '🌋 Underirdischi Vulkanwärmi', '🌧️ Rägetröpfli'],
+        answer: 1
+      },
+      {
+        q: '🔋 Wie spiicheret de Captain Minion Strom für de dunkli Wältruum?',
+        options: ['🧱💎 Lüüchtendi blaui Lego-Power-Stei', '🎈 Luftballön', '🧦 Chuschelsocke'],
+        answer: 0
+      }
+    ];
+
     function setLang(lang) {
       currentLang = lang;
-      document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : lang;
-      ['en', 'de', 'zh'].forEach(l => {
+      document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : (lang === 'gsw' ? 'de-CH' : lang);
+      ['en', 'de', 'gsw', 'zh'].forEach(l => {
         const btn = document.getElementById('lang-' + l);
         if (btn) btn.classList.toggle('active', l === lang);
       });
@@ -2219,7 +2412,7 @@
         mBtns[2].textContent = t.movieBtns[2];
       }
 
-      const activeMovieList = lang === 'de' ? deMovieScenes : (lang === 'zh' ? zhMovieScenes : enMovieScenes);
+      const activeMovieList = lang === 'de' ? deMovieScenes : (lang === 'gsw' ? gswMovieScenes : (lang === 'zh' ? zhMovieScenes : enMovieScenes));
       for (let i = 0; i < movieScenes.length; i++) {
         movieScenes[i] = activeMovieList[i];
       }
@@ -2240,7 +2433,7 @@
         bBtns[0].textContent = t.bookBtns[0];
         bBtns[1].textContent = t.bookBtns[1];
       }
-      const activeBookList = lang === 'de' ? deBookPages : (lang === 'zh' ? zhBookPages : enBookPages);
+      const activeBookList = lang === 'de' ? deBookPages : (lang === 'gsw' ? gswBookPages : (lang === 'zh' ? zhBookPages : enBookPages));
       for (let i = 0; i < bookPages.length; i++) {
         bookPages[i] = activeBookList[i];
       }
@@ -2271,7 +2464,7 @@
         if (t.arcadeDescs[i]) box.querySelector('p').textContent = t.arcadeDescs[i];
       });
 
-      const activeQuizList = lang === 'de' ? deQuizQuestions : (lang === 'zh' ? zhQuizQuestions : enQuizQuestions);
+      const activeQuizList = lang === 'de' ? deQuizQuestions : (lang === 'gsw' ? gswQuizQuestions : (lang === 'zh' ? zhQuizQuestions : enQuizQuestions));
       for (let i = 0; i < quizQuestions.length; i++) {
         quizQuestions[i] = activeQuizList[i];
       }
