@@ -3,17 +3,50 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Adam's Awesome World</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>🚀 Adam's Awesome Universe!</title>
+  <link rel="stylesheet" href="style.css?v=3" />
+  <style>
+    /* Inline critical styles so images are always neat and inside cards even if CSS caches */
+    .card {
+      overflow: hidden;
+      text-align: center;
+      align-items: center;
+    }
+    .card-pic {
+      width: 140px;
+      height: 110px;
+      margin: 0 auto 0.75rem;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f0f9ff;
+      border: 2px solid #bae6fd;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .card-pic svg,
+    .card-pic img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
 </head>
-<body>
+<body class="theme-space">
   <header>
     <nav class="navbar">
-      <div class="logo">🚀 Adam's World</div>
+      <div class="logo">🚀 Adam's Universe</div>
+      <div class="theme-buttons">
+        <button onclick="setTheme('theme-space')" class="theme-btn">🪐 Space Blue</button>
+        <button onclick="setTheme('theme-ocean')" class="theme-btn">🌊 Underwater</button>
+        <button onclick="setTheme('theme-spring')" class="theme-btn">🌸 Spring</button>
+      </div>
       <ul class="nav-links">
-        <li><a href="#about">About</a></li>
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#game">Mini-Game</a></li>
         <li><a href="#favorites">Favorites</a></li>
-        <li><a href="#creations">Creations</a></li>
         <li><a href="#contact">Say Hi</a></li>
       </ul>
     </nav>
@@ -22,130 +55,341 @@
   <main>
     <section class="hero">
       <div class="hero-content">
-        <h1>Welcome to Adam's World!</h1>
-        <p>Hi, I'm Adam and I'm 9 years old! Welcome to my website.</p>
-        <a href="#about" class="btn">Explore My Site</a>
+        <div class="badge">✨ Official Website ✨</div>
+        <h1>Hi! I'm Adam! 👋</h1>
+        <p class="hero-subtitle">I'm <strong>9 years old</strong> — Future Astronaut 👨‍🚀, Lego Builder 🧱, Fast Runner 🏃 &amp; Cat Lover 🐱!</p>
+        <div class="hero-actions">
+          <a href="#game" class="btn btn-glow">🎮 Play My Space Game</a>
+          <a href="#favorites" class="btn btn-secondary">🌟 See My Favorites</a>
+        </div>
       </div>
     </section>
 
     <section id="about" class="section">
-      <h2>About Me</h2>
+      <h2>🌟 About Adam</h2>
       <div class="bio-card">
-        <p><strong>Name:</strong> Adam</p>
-        <p><strong>Age:</strong> 9 years old 🎉</p>
-        <p><strong>Bio:</strong> Welcome to my very own website! I'm 9 years old and learning how to build cool things on the internet.</p>
+        <div class="bio-stats">
+          <div class="stat-box">
+            <span class="stat-emoji">🎂</span>
+            <span class="stat-label">Age</span>
+            <span class="stat-value">9 Years Old</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-emoji">🌊</span>
+            <span class="stat-label">Superpower</span>
+            <span class="stat-value">Going Underwater</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-emoji">👨‍🚀</span>
+            <span class="stat-label">Dream Job</span>
+            <span class="stat-value">Astronaut</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-emoji">🪐</span>
+            <span class="stat-label">Favorite Planet</span>
+            <span class="stat-value">Saturn</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="game" class="section">
+      <h2>🎮 Adam's Space Clicker Game!</h2>
+      <div class="game-box">
+        <p>Click the floating targets to collect Space Points for Adam's rocket to Saturn!</p>
+        <div class="scoreboard">
+          <span>🏆 Score: <strong id="score">0</strong></span>
+          <span id="rank-badge">🚀 Rookie Explorer</span>
+        </div>
+        <div class="game-arena" id="game-arena">
+          <button id="target-btn" class="game-target" onclick="scorePoint()">🍕</button>
+        </div>
       </div>
     </section>
 
     <section id="favorites" class="section">
-      <h2>My Favorite Things</h2>
+      <h2>💙 All My Favorite Things</h2>
+      <p class="section-hint">Click any card for a fun surprise!</p>
       <div class="grid">
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?w=600&auto=format&fit=crop" alt="Lego bricks" />
+
+        <div class="card" onclick="burstEmoji(this, '🧱')">
+          <div class="card-pic">
+            <svg viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
+              <rect width="140" height="110" fill="#fef3c7"/>
+              <rect x="30" y="25" width="22" height="12" rx="3" fill="#ef4444"/>
+              <rect x="60" y="25" width="22" height="12" rx="3" fill="#ef4444"/>
+              <rect x="90" y="25" width="20" height="12" rx="3" fill="#ef4444"/>
+              <rect x="20" y="35" width="100" height="50" rx="6" fill="#dc2626"/>
+              <circle cx="45" cy="60" r="8" fill="#fca5a5"/>
+              <circle cx="95" cy="60" r="8" fill="#fca5a5"/>
+            </svg>
+          </div>
           <h3>🧱 Building with Lego</h3>
           <p>I love building cool creations and playing with Lego!</p>
         </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=600&auto=format&fit=crop" alt="Cute Cat" />
-          <h3>🐱 Cats</h3>
+
+        <div class="card" onclick="burstEmoji(this, '🐱')">
+          <div class="card-pic">
+            <svg viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
+              <rect width="140" height="110" fill="#fce7f3"/>
+              <polygon points="35,45 45,18 62,38" fill="#fb923c"/>
+              <polygon points="105,45 95,18 78,38" fill="#fb923c"/>
+              <circle cx="70" cy="62" r="32" fill="#fdba74"/>
+              <circle cx="58" cy="56" r="5" fill="#1e293b"/>
+              <circle cx="82" cy="56" r="5" fill="#1e293b"/>
+              <polygon points="66,65 74,65 70,71" fill="#f43f5e"/>
+              <path d="M62 75 Q70 82 78 75" stroke="#1e293b" stroke-width="3" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>🐱 Cute Cats</h3>
           <p>Cats are my absolute favorite animals in the whole world!</p>
         </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&auto=format&fit=crop" alt="Delicious Pizza" />
-          <h3>🍕 Pizza</h3>
-          <p>My number one favorite food is delicious pizza!</p>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop" alt="Smurfs and fantasy woods" />
-          <h3>🍄 The Smurfs</h3>
-          <p>My favorite cartoon characters are the Smurfs!</p>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&auto=format&fit=crop" alt="Running track" />
-          <h3>🏃 Running & Sports</h3>
-          <p>Running is my number one favorite sport, and I love staying fast and active!</p>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1682687220063-4742bd7fd538?w=600&auto=format&fit=crop" alt="Underwater Ocean" />
-          <h3>🌊 Secret Superpower</h3>
-          <p>Underwater Exploration! Going deep underwater to swim and explore like an aquatic hero!</p>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop" alt="Outer Space and Galaxy" />
-          <h3>🚀 Dream Destination</h3>
-          <p>Outer Space! Flying past the moon and stars to explore the galaxy!</p>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=600&auto=format&fit=crop" alt="Spring Flowers" />
-          <h3>🌸 Favorite Season</h3>
-          <p>Spring! Warm sunny days, blooming flowers, and great weather to play outside!</p>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=600&auto=format&fit=crop" alt="Ice Cream Cone" />
-          <h3>🍦 Favorite Sweet Treat</h3>
-          <p>Ice cream! Cool, sweet, and always delicious.</p>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1508248467877-aec1b08de376?w=600&auto=format&fit=crop" alt="Taiwan Taipei 101" />
-          <h3>🇹🇼 Taiwan</h3>
-          <p>Special place: Taiwan! A wonderful place I love and want to share on my website.</p>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop" alt="Sunny Summer Beach" />
-          <h3>☀️ Summer Holiday</h3>
-          <p>My favorite time of year is summer holiday—fun adventures and time to explore!</p>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&auto=format&fit=crop" alt="Open Book Story" />
-          <h3>📖 Smurfs Stories</h3>
-          <p>My favorite books and stories to read are Smurfs adventures!</p>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop" alt="Astronaut in Space" />
-          <h3>👨‍🚀 Future Dream Job</h3>
-          <p>Astronaut! When I grow up, I want to fly into space and explore the stars as an astronaut!</p>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=600&auto=format&fit=crop" alt="Saturn Planet" />
-          <h3>🪐 Favorite Planet</h3>
-          <p>Saturn! The amazing planet with giant, beautiful ice rings.</p>
-        </div>
-        <div class="card">
-          <img src="https://images.unsplash.com/photo-1536640712-4d4c36ff0e4e?w=600&auto=format&fit=crop" alt="Friends Playing" />
-          <h3>🏠 Friends & Playdates</h3>
-          <p>Having friends over to my home to hang out, build Lego, and play fun games together!</p>
-        </div>
-      </div>
-    </section>
 
-    <section id="creations" class="section">
-      <h2>My Creations</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>🌟 Cool Project 1</h3>
-          <p>A Lego build, drawing, or awesome project.</p>
+        <div class="card" onclick="burstEmoji(this, '🍕')">
+          <div class="card-pic">
+            <svg viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
+              <rect width="140" height="110" fill="#ffedd5"/>
+              <polygon points="70,15 25,92 115,92" fill="#f59e0b" stroke="#b45309" stroke-width="4"/>
+              <polygon points="70,22 33,85 107,85" fill="#fde047"/>
+              <circle cx="70" cy="50" r="8" fill="#dc2626"/>
+              <circle cx="55" cy="72" r="8" fill="#dc2626"/>
+              <circle cx="85" cy="70" r="8" fill="#dc2626"/>
+            </svg>
+          </div>
+          <h3>🍕 Delicious Pizza</h3>
+          <p>My number one favorite food is hot cheesy pizza!</p>
         </div>
-        <div class="card">
-          <h3>🚀 Cool Project 2</h3>
-          <p>Another amazing creation.</p>
+
+        <div class="card" onclick="burstEmoji(this, '🍄')">
+          <div class="card-pic">
+            <svg viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
+              <rect width="140" height="110" fill="#dbeafe"/>
+              <rect x="52" y="55" width="36" height="40" rx="6" fill="#fef3c7"/>
+              <path d="M30 60 Q70 10 110 60 Z" fill="#ef4444"/>
+              <circle cx="55" cy="42" r="6" fill="#ffffff"/>
+              <circle cx="82" cy="38" r="7" fill="#ffffff"/>
+              <circle cx="70" cy="50" r="5" fill="#ffffff"/>
+              <rect x="63" y="72" width="14" height="23" rx="7" fill="#92400e"/>
+            </svg>
+          </div>
+          <h3>🍄 The Smurfs &amp; Stories</h3>
+          <p>My favorite cartoon characters and bedtime stories are the Smurfs!</p>
         </div>
+
+        <div class="card" onclick="burstEmoji(this, '💛')">
+          <div class="card-pic">
+            <svg viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
+              <rect width="140" height="110" fill="#fef9c3"/>
+              <rect x="42" y="18" width="56" height="75" rx="28" fill="#facc15"/>
+              <rect x="42" y="40" width="56" height="8" fill="#1e293b"/>
+              <circle cx="58" cy="44" r="11" fill="#ffffff" stroke="#64748b" stroke-width="5"/>
+              <circle cx="82" cy="44" r="11" fill="#ffffff" stroke="#64748b" stroke-width="5"/>
+              <circle cx="58" cy="44" r="4" fill="#1e293b"/>
+              <circle cx="82" cy="44" r="4" fill="#1e293b"/>
+              <path d="M58 68 Q70 76 82 68" stroke="#1e293b" stroke-width="3" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>💛 Minions</h3>
+          <p>My favorite funny movie characters are the Minions!</p>
+        </div>
+
+        <div class="card" onclick="burstEmoji(this, '🏃')">
+          <div class="card-pic">
+            <svg viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
+              <rect width="140" height="110" fill="#dcfce7"/>
+              <rect x="10" y="65" width="120" height="30" rx="6" fill="#ea580c"/>
+              <line x1="15" y1="80" x2="125" y2="80" stroke="#ffffff" stroke-width="3" stroke-dasharray="8 6"/>
+              <circle cx="75" cy="30" r="10" fill="#2563eb"/>
+              <path d="M55 52 L75 42 L92 50 M75 42 L68 62 L52 72 M68 62 L88 74" stroke="#2563eb" stroke-width="6" stroke-linecap="round" fill="none"/>
+            </svg>
+          </div>
+          <h3>🏃 Running &amp; Sports</h3>
+          <p>Running is my number one favorite sport at school!</p>
+        </div>
+
+        <div class="card" onclick="burstEmoji(this, '🌊')">
+          <div class="card-pic">
+            <svg viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
+              <rect width="140" height="110" fill="#0284c7"/>
+              <path d="M0 30 Q35 18 70 30 T140 30" stroke="#38bdf8" stroke-width="5" fill="none"/>
+              <ellipse cx="75" cy="65" rx="26" ry="14" fill="#fbbf24"/>
+              <polygon points="48,65 30,52 30,78" fill="#f59e0b"/>
+              <circle cx="88" cy="61" r="4" fill="#0f172a"/>
+              <circle cx="108" cy="45" r="4" fill="#bae6fd"/>
+              <circle cx="114" cy="32" r="6" fill="#bae6fd"/>
+            </svg>
+          </div>
+          <h3>🌊 Underwater Superpower</h3>
+          <p>Going deep underwater to swim and explore the ocean!</p>
+        </div>
+
+        <div class="card" onclick="burstEmoji(this, '🚀')">
+          <div class="card-pic">
+            <svg viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
+              <rect width="140" height="110" fill="#0f172a"/>
+              <circle cx="25" cy="25" r="2" fill="#ffffff"/>
+              <circle cx="115" cy="30" r="3" fill="#fde047"/>
+              <circle cx="30" cy="85" r="2" fill="#ffffff"/>
+              <path d="M70 15 Q92 45 86 75 L54 75 Q48 45 70 15 Z" fill="#f8fafc"/>
+              <polygon points="54,60 38,80 54,75" fill="#ef4444"/>
+              <polygon points="86,60 102,80 86,75" fill="#ef4444"/>
+              <circle cx="70" cy="48" r="9" fill="#38bdf8" stroke="#cbd5e1" stroke-width="3"/>
+              <polygon points="62,75 70,98 78,75" fill="#f97316"/>
+            </svg>
+          </div>
+          <h3>🚀 Outer Space</h3>
+          <p>My dream adventure is blasting off into outer space!</p>
+        </div>
+
+        <div class="card" onclick="burstEmoji(this, '👨‍🚀')">
+          <div class="card-pic">
+            <svg viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
+              <rect width="140" height="110" fill="#1e1b4b"/>
+              <circle cx="70" cy="55" r="34" fill="#f8fafc" stroke="#cbd5e1" stroke-width="4"/>
+              <rect x="46" y="38" width="48" height="30" rx="14" fill="#0284c7" stroke="#38bdf8" stroke-width="3"/>
+              <path d="M54 45 Q65 40 75 45" stroke="#bae6fd" stroke-width="3" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>👨‍🚀 Future Astronaut</h3>
+          <p>When I grow up, I want to be an astronaut exploring the stars!</p>
+        </div>
+
+        <div class="card" onclick="burstEmoji(this, '🪐')">
+          <div class="card-pic">
+            <svg viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
+              <rect width="140" height="110" fill="#090d16"/>
+              <circle cx="70" cy="55" r="24" fill="#f59e0b"/>
+              <ellipse cx="70" cy="55" rx="52" ry="12" fill="none" stroke="#fde68a" stroke-width="7" transform="rotate(-18 70 55)"/>
+            </svg>
+          </div>
+          <h3>🪐 Saturn</h3>
+          <p>Saturn is my favorite planet with its giant icy rings!</p>
+        </div>
+
+        <div class="card" onclick="burstEmoji(this, '🍦')">
+          <div class="card-pic">
+            <svg viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
+              <rect width="140" height="110" fill="#fdf2f8"/>
+              <polygon points="52,55 88,55 70,98" fill="#d97706"/>
+              <circle cx="70" cy="44" r="20" fill="#f472b6"/>
+              <circle cx="70" cy="22" r="5" fill="#ef4444"/>
+            </svg>
+          </div>
+          <h3>🍦 Ice Cream</h3>
+          <p>My favorite sweet dessert is cold, yummy ice cream!</p>
+        </div>
+
+        <div class="card" onclick="burstEmoji(this, '🇹🇼')">
+          <div class="card-pic">
+            <svg viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
+              <rect width="140" height="110" fill="#e0f2fe"/>
+              <rect x="67" y="8" width="6" height="16" fill="#0284c7"/>
+              <polygon points="56,24 84,24 80,42 60,42" fill="#0ea5e9"/>
+              <polygon points="54,42 86,42 81,62 59,62" fill="#0284c7"/>
+              <polygon points="52,62 88,62 82,82 58,82" fill="#0ea5e9"/>
+              <rect x="56" y="82" width="28" height="22" fill="#0369a1"/>
+            </svg>
+          </div>
+          <h3>🇹🇼 Taiwan</h3>
+          <p>Special place: Taiwan and the famous Taipei 101 tower!</p>
+        </div>
+
+        <div class="card" onclick="burstEmoji(this, '🌸')">
+          <div class="card-pic">
+            <svg viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
+              <rect width="140" height="110" fill="#ecfdf5"/>
+              <circle cx="70" cy="34" r="14" fill="#f472b6"/>
+              <circle cx="90" cy="48" r="14" fill="#f472b6"/>
+              <circle cx="82" cy="72" r="14" fill="#f472b6"/>
+              <circle cx="58" cy="72" r="14" fill="#f472b6"/>
+              <circle cx="50" cy="48" r="14" fill="#f472b6"/>
+              <circle cx="70" cy="54" r="11" fill="#facc15"/>
+            </svg>
+          </div>
+          <h3>🌸 Spring Season</h3>
+          <p>Spring is my favorite season with flowers and warm days!</p>
+        </div>
+
+        <div class="card" onclick="burstEmoji(this, '☀️')">
+          <div class="card-pic">
+            <svg viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
+              <rect width="140" height="110" fill="#bae6fd"/>
+              <circle cx="70" cy="44" r="22" fill="#facc15"/>
+              <rect x="0" y="75" width="140" height="35" fill="#fde047"/>
+              <path d="M0 75 Q35 65 70 75 T140 75" fill="#0284c7"/>
+            </svg>
+          </div>
+          <h3>☀️ Summer Holiday</h3>
+          <p>My favorite holiday is summer break for fun adventures!</p>
+        </div>
+
+        <div class="card" onclick="burstEmoji(this, '🏠')">
+          <div class="card-pic">
+            <svg viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
+              <rect width="140" height="110" fill="#f1f5f9"/>
+              <polygon points="70,18 30,52 110,52" fill="#ef4444"/>
+              <rect x="42" y="52" width="56" height="44" fill="#fef08a" stroke="#ca8a04" stroke-width="2"/>
+              <rect x="63" y="68" width="14" height="28" fill="#b45309"/>
+            </svg>
+          </div>
+          <h3>🏠 Friends at Home</h3>
+          <p>Playing games with my friends at my home!</p>
+        </div>
+
       </div>
     </section>
 
     <section id="contact" class="section">
-      <h2>Say Hi!</h2>
-      <p>Leave a message for Adam:</p>
-      <form class="contact-form" onsubmit="event.preventDefault(); alert('Thanks for messaging Adam!');">
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Your Email" required />
-        <textarea placeholder="Your Message" rows="4" required></textarea>
-        <button type="submit" class="btn">Send Message</button>
-      </form>
+      <h2>🎉 High-Five Adam!</h2>
+      <div class="highfive-box">
+        <p>Click the button to send Adam a virtual High-Five!</p>
+        <button class="btn btn-glow" onclick="addHighFive()">✋ Send High-Five (<span id="hf-count">10</span>)</button>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2026 Adam's World. Built by Adam!</p>
+    <p>🚀 Built by Adam (Age 9) &bull; Welcome to Adam's Universe!</p>
   </footer>
+
+  <script>
+    let score = 0;
+    let highFives = 10;
+    const emojis = ['🍕', '🐱', '🧱', '🚀', '🪐', '🍦', '⭐', '🍄'];
+
+    function scorePoint() {
+      score++;
+      document.getElementById('score').textContent = score;
+      const btn = document.getElementById('target-btn');
+      const arena = document.getElementById('game-arena');
+      const maxX = arena.clientWidth - 70;
+      const maxY = arena.clientHeight - 70;
+      btn.style.left = Math.max(10, Math.floor(Math.random() * maxX)) + 'px';
+      btn.style.top = Math.max(10, Math.floor(Math.random() * maxY)) + 'px';
+      btn.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+
+      const badge = document.getElementById('rank-badge');
+      if (score >= 20) badge.textContent = '👑 Galaxy Legend!';
+      else if (score >= 10) badge.textContent = '👨‍🚀 Saturn Commander!';
+      else if (score >= 5) badge.textContent = '🌟 Space Pilot!';
+    }
+
+    function setTheme(themeName) {
+      document.body.className = themeName;
+    }
+
+    function addHighFive() {
+      highFives++;
+      document.getElementById('hf-count').textContent = highFives;
+    }
+
+    function burstEmoji(card, emoji) {
+      const span = document.createElement('span');
+      span.className = 'floating-emoji';
+      span.textContent = emoji;
+      card.appendChild(span);
+      setTimeout(() => span.remove(), 900);
+    }
+  </script>
 </body>
 </html>
