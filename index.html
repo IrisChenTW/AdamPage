@@ -196,6 +196,101 @@
       background: #b45309;
       transform: scale(1.05);
     }
+    /* New Arcade Games Styles */
+    .arcade-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .dodge-box, .memory-box {
+      background: linear-gradient(145deg, #0f172a, #1e1b4b);
+      color: white;
+      padding: 1.8rem;
+      border-radius: 20px;
+      border: 4px solid #38bdf8;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.25);
+    }
+    .dodge-stage {
+      position: relative;
+      width: 100%;
+      height: 250px;
+      background: linear-gradient(180deg, #020617 0%, #0c4a6e 100%);
+      border: 2px solid #38bdf8;
+      border-radius: 14px;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+    .player-ship {
+      position: absolute;
+      bottom: 12px;
+      left: 45%;
+      font-size: 2.4rem;
+      transition: left 0.1s ease;
+      user-select: none;
+    }
+    .falling-item {
+      position: absolute;
+      top: 0;
+      left: 45%;
+      font-size: 2.2rem;
+      user-select: none;
+    }
+    .dodge-controls {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .ctrl-btn {
+      padding: 0.7rem 1.3rem;
+      font-size: 1.15rem;
+      font-weight: 800;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      background: #38bdf8;
+      color: #0f172a;
+      transition: transform 0.1s ease, background 0.2s;
+    }
+    .ctrl-btn:hover {
+      background: #7dd3fc;
+      transform: scale(1.06);
+    }
+    .memory-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.65rem;
+      max-width: 320px;
+      margin: 1rem auto;
+    }
+    .mem-card {
+      height: 68px;
+      font-size: 2rem;
+      border-radius: 12px;
+      border: 2px solid #60a5fa;
+      background: #1e3a8a;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      transition: transform 0.15s ease, background 0.2s;
+      user-select: none;
+    }
+    .mem-card.revealed {
+      background: #fef08a;
+      color: #0f172a;
+      border-color: #facc15;
+    }
+    .mem-card.matched {
+      background: #4ade80;
+      color: #0f172a;
+      border-color: #22c55e;
+      transform: scale(0.96);
+    }
   </style>
 </head>
 <body class="theme-space">
@@ -375,8 +470,9 @@
     </section>
 
     <section id="game" class="section">
-      <h2>🎮 Adam's Space Clicker Game!</h2>
+      <h2>🎮 Adam's Game Arcade!</h2>
       <div class="game-box">
+        <h3>🎯 Game 1: Space Clicker!</h3>
         <p>Click the floating targets to collect Space Points for Adam's rocket to Saturn!</p>
         <div class="scoreboard">
           <span>🏆 Score: <strong id="score">0</strong></span>
@@ -384,6 +480,39 @@
         </div>
         <div class="game-arena" id="game-arena">
           <button id="target-btn" class="game-target" onclick="scorePoint()">🍕</button>
+        </div>
+      </div>
+
+      <div class="arcade-grid">
+        <!-- Game 2: Shark Dodge -->
+        <div class="dodge-box">
+          <h3>🦈🚀 Game 2: Shark &amp; Pizza Dodge!</h3>
+          <p>Move your Lego Spaceship left &amp; right! Catch 🍕💎 (+10 pts) and dodge the 🦈 Shark!</p>
+          <div class="scoreboard">
+            <span>⭐ Score: <strong id="dodge-score">0</strong></span>
+            <span id="dodge-msg">Press Start!</span>
+          </div>
+          <div class="dodge-stage" id="dodge-stage">
+            <div id="falling-item" class="falling-item">🍕</div>
+            <div id="player-ship" class="player-ship">🚀</div>
+          </div>
+          <div class="dodge-controls">
+            <button class="ctrl-btn" onclick="moveShip(-18)">⬅️ Left</button>
+            <button class="ctrl-btn" style="background:#facc15;" onclick="startDodgeGame()">▶️ Start / Reset</button>
+            <button class="ctrl-btn" onclick="moveShip(18)">Right ➡️</button>
+          </div>
+        </div>
+
+        <!-- Game 3: Memory Match -->
+        <div class="memory-box">
+          <h3>🧠💛 Game 3: Captain Minion Memory Match!</h3>
+          <p>Flip two cards to find matching pairs of Luna, Minions, Pizza, Saturn &amp; Aliens!</p>
+          <div class="scoreboard">
+            <span>🎉 Pairs: <strong id="mem-pairs">0</strong> / 6</span>
+            <span id="mem-msg">Find a match!</span>
+          </div>
+          <div id="memory-grid" class="memory-grid"></div>
+          <button class="ctrl-btn" style="background:#facc15; margin-top: 0.5rem;" onclick="initMemoryGame()">🔄 Shuffle Cards</button>
         </div>
       </div>
     </section>
@@ -788,6 +917,120 @@
       card.appendChild(span);
       setTimeout(() => span.remove(), 900);
     }
+
+    // --- Game 2: Shark & Pizza Dodge ---
+    let shipX = 45;
+    let dodgeScore = 0;
+    let dodgeTimer = null;
+    let itemX = 45;
+    let itemY = 0;
+    let currentItem = '🍕';
+    const goodItems = ['🍕', '💎', '🍦', '💛'];
+
+    function moveShip(delta) {
+      shipX = Math.max(5, Math.min(85, shipX + delta));
+      document.getElementById('player-ship').style.left = shipX + '%';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft') moveShip(-15);
+      if (e.key === 'ArrowRight') moveShip(15);
+    });
+
+    function spawnFallingItem() {
+      itemY = 0;
+      itemX = Math.floor(Math.random() * 80) + 5;
+      currentItem = Math.random() < 0.32 ? '🦈' : goodItems[Math.floor(Math.random() * goodItems.length)];
+      const el = document.getElementById('falling-item');
+      el.textContent = currentItem;
+      el.style.left = itemX + '%';
+      el.style.top = itemY + 'px';
+    }
+
+    function startDodgeGame() {
+      if (dodgeTimer) clearInterval(dodgeTimer);
+      dodgeScore = 0;
+      document.getElementById('dodge-score').textContent = '0';
+      document.getElementById('dodge-msg').textContent = 'Go Captain Minion!';
+      spawnFallingItem();
+      dodgeTimer = setInterval(function() {
+        itemY += 10;
+        const el = document.getElementById('falling-item');
+        el.style.top = itemY + 'px';
+        if (itemY >= 185) {
+          const hit = Math.abs(shipX - itemX) < 18;
+          if (hit) {
+            if (currentItem === '🦈') {
+              dodgeScore = Math.max(0, dodgeScore - 10);
+              document.getElementById('dodge-msg').textContent = '🦈 Chomp! -10 pts!';
+            } else {
+              dodgeScore += 10;
+              document.getElementById('dodge-msg').textContent = '✨ Caught ' + currentItem + ' +10!';
+            }
+            document.getElementById('dodge-score').textContent = dodgeScore;
+          }
+          spawnFallingItem();
+        }
+      }, 90);
+    }
+
+    // --- Game 3: Captain Minion Memory Match ---
+    const memIcons = ['🐱', '💛', '🍕', '🧱', '🪐', '👽'];
+    let memDeck = [];
+    let flippedCards = [];
+    let matchedPairs = 0;
+    let lockBoard = false;
+
+    function initMemoryGame() {
+      memDeck = [...memIcons, ...memIcons].sort(() => Math.random() - 0.5);
+      flippedCards = [];
+      matchedPairs = 0;
+      lockBoard = false;
+      document.getElementById('mem-pairs').textContent = '0';
+      document.getElementById('mem-msg').textContent = 'Flip 2 cards!';
+      const grid = document.getElementById('memory-grid');
+      grid.innerHTML = '';
+      memDeck.forEach((icon, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'mem-card';
+        btn.textContent = '❓';
+        btn.onclick = () => flipCard(btn, icon, idx);
+        grid.appendChild(btn);
+      });
+    }
+
+    function flipCard(btn, icon, idx) {
+      if (lockBoard || btn.classList.contains('revealed') || btn.classList.contains('matched')) return;
+      btn.classList.add('revealed');
+      btn.textContent = icon;
+      flippedCards.push({ btn, icon, idx });
+
+      if (flippedCards.length === 2) {
+        lockBoard = true;
+        const [first, second] = flippedCards;
+        if (first.icon === second.icon) {
+          first.btn.classList.add('matched');
+          second.btn.classList.add('matched');
+          matchedPairs++;
+          document.getElementById('mem-pairs').textContent = matchedPairs;
+          document.getElementById('mem-msg').textContent = matchedPairs === 6 ? '🏆 YOU WON!' : '🎉 Match found!';
+          flippedCards = [];
+          lockBoard = false;
+        } else {
+          document.getElementById('mem-msg').textContent = 'Try again!';
+          setTimeout(() => {
+            first.btn.classList.remove('revealed');
+            second.btn.classList.remove('revealed');
+            first.btn.textContent = '❓';
+            second.btn.textContent = '❓';
+            flippedCards = [];
+            lockBoard = false;
+          }, 700);
+        }
+      }
+    }
+
+    initMemoryGame();
   </script>
 </body>
 </html>
