@@ -51,12 +51,11 @@ Aboard the Lego Spaceship lives **Luna the Zero-Gravity Cat**, wearing her tiny 
 
 ---
 
-## ⚡ Chapter 7: Lightning Bolts & Everyday Electricity
-When you flip a switch on the wall, the room lights up right away. How does electricity travel so fast?
-- Everything in the world is made of tiny building blocks called **atoms**, which have even tinier zippy particles called **electrons**.
-- When electrons march together through a copper wire, we call it an **electric current**.
-- In a thunderstorm, clouds rub together and build up giant static electricity until—*FLASH!*—a **lightning bolt** leaps across the sky, hotter than the surface of the sun!
-- **🌟 Adam's Science Secret:** A single bolt of lightning has enough energy to toast 100,000 slices of bread!
+## 🛡️⚡💛 Chapter 7: The Glowing Electric Shield in the Storm!
+As the **Lego Spaceship** flies higher, it zooms straight into a crackling **Thunder and Lightning Cloud**!
+- **Marching Electrons**: Everything in the world is made of tiny building blocks called **atoms**, which have even tinier zippy particles called **electrons**. When electrons race together, they create **electricity**!
+- **Electric Force-Field**: In the storm cloud, giant static electricity builds up until—*FLASH!*—lightning bolts leap across the sky! Captain Minion's **Minion sidekick** presses the blue button to turn on a **Glowing Electric Force-Field Shield** that bounces the lightning bolts away like ping-pong balls!
+- **🌟 Captain Minion's Science Secret:** A single bolt of lightning is five times hotter than the surface of the sun and has enough energy to toast 100,000 slices of bread!
 
 ---
 
