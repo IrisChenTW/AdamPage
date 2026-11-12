@@ -27,11 +27,11 @@ You cannot see the wind, but you can feel it push against your face when you run
 
 ---
 
-## 🌊 Chapter 4: Deep Ocean & River Power (Hydro Energy)
-Water is heavy and powerful! If you have ever swum underwater or jumped over ocean waves on a summer holiday, you have felt the push of water energy.
-- **Hydroelectric Dams** let rushing river water flow through giant underground pipes to spin water wheels called turbines.
-- **Ocean Wave & Tidal Power** uses the up-and-down motion of ocean waves and underwater currents to generate clean electricity without any smoke or pollution.
-- **🌟 Adam's Science Secret:** Because water is about 800 times denser than air, even a slow underwater current carries a huge amount of energy!
+## 🦈🌊🧱 Chapter 4: Escaping the Giant Shark with Ocean Power!
+Suddenly, deep underwater, a giant hungry **Shark** spots **Captain Minion** and his Minion sidekick and starts chasing them!
+- **Hydro Turbo-Boost**: Thinking fast, Captain Minion steers their giant **Lego Spaceship** straight into a powerful underwater ocean current!
+- **Water Power**: The rushing water spins the ship's hydro-turbines, generating massive clean **Hydro (Water) Energy** that powers up the Lego turbo-propellers and zooms them up out of the ocean faster than the shark can swim!
+- **🌟 Captain Minion's Science Secret:** Because water is about 800 times denser than air, rushing underwater currents carry a huge amount of energy!
 
 ---
 
