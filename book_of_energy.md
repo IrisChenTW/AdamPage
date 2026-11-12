@@ -43,11 +43,11 @@ After escaping the shark and flying high above the clouds with the Giant Wind Pr
 
 ---
 
-## 🐱 Chapter 6: Cat Naps & Animal Energy
-Have you ever watched a cat curl up in a warm sunny patch on the floor and sleep for hours?
-- Animals are masters of saving energy! By taking long **cat naps** in the warm sun, a cat saves its body energy so it doesn't have to work as hard to stay warm.
-- Then, all of a sudden—*ZOOM!* The cat turns all that saved-up potential energy into lightning-fast **kinetic energy**, sprinting across the room and jumping high into the air!
-- **🌟 Adam's Science Secret:** A cat's back legs act like coiled springs, storing elastic energy right before they pounce!
+## 🐱🌙👨‍🚀 Chapter 6: Luna the Zero-Gravity Space Cat!
+Aboard the Lego Spaceship lives **Luna the Zero-Gravity Cat**, wearing her tiny astronaut helmet!
+- **Sunny Cat Naps**: Luna is a master of saving energy! By curling up by the sunny spaceship window for a warm cat nap, Luna saves up her body fuel.
+- **Zero-Gravity Backflips**: Then, all of a sudden—*ZOOM!* Luna turns all that saved-up **potential energy** into lightning-fast **kinetic energy**, doing awesome **zero-gravity backflips** across the cabin while Captain Minion and his Minion sidekick cheer!
+- **🌟 Captain Minion's Science Secret:** Luna's back legs act like coiled springs, storing elastic energy right before she launches into a zero-gravity backflip!
 
 ---
 
