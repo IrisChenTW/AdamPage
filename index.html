@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🚀 Adam's Awesome Universe!</title>
-  <link rel="stylesheet" href="style.css?v=4" />
+  <link rel="stylesheet" href="style.css?v=5" />
   <style>
-    /* Critical inline styles so images and energy game always render cleanly */
+    /* Critical inline styles so images, energy game, and flip-book always render cleanly */
     .card {
       overflow: hidden;
       text-align: center;
@@ -94,6 +94,66 @@
       min-height: 2.2rem;
       color: #86efac;
     }
+    /* Book of Energy styles */
+    .book-wrapper {
+      background: #fffbeb;
+      border: 4px solid #f59e0b;
+      border-radius: 22px;
+      padding: 2rem;
+      max-width: 780px;
+      margin: 0 auto 2.5rem;
+      box-shadow: 0 12px 28px rgba(180, 83, 9, 0.18);
+      text-align: center;
+    }
+    .book-page-badge {
+      display: inline-block;
+      background: #fef3c7;
+      border: 2px solid #f59e0b;
+      color: #b45309;
+      font-weight: 800;
+      padding: 0.25rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+      font-size: 1.05rem;
+    }
+    .book-emoji {
+      font-size: 4rem;
+      margin-bottom: 0.5rem;
+    }
+    .book-title {
+      font-size: 2rem;
+      color: #92400e;
+      margin-bottom: 0.75rem;
+    }
+    .book-text {
+      font-size: 1.35rem;
+      color: #1e293b;
+      max-width: 620px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.7;
+    }
+    .book-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .book-btn {
+      padding: 0.75rem 1.5rem;
+      font-size: 1.15rem;
+      font-weight: 800;
+      border-radius: 999px;
+      border: none;
+      background: #d97706;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.15s ease, background 0.2s;
+    }
+    .book-btn:hover {
+      background: #b45309;
+      transform: scale(1.05);
+    }
   </style>
 </head>
 <body class="theme-space">
@@ -107,10 +167,10 @@
       </div>
       <ul class="nav-links">
         <li><a href="#about">About Me</a></li>
-        <li><a href="#energy">⚡ Energy</a></li>
+        <li><a href="#book">📖 Energy Book</a></li>
+        <li><a href="#energy">⚡ Power Game</a></li>
         <li><a href="#game">Mini-Game</a></li>
         <li><a href="#favorites">Favorites</a></li>
-        <li><a href="#contact">Say Hi</a></li>
       </ul>
     </nav>
   </header>
@@ -120,10 +180,10 @@
       <div class="hero-content">
         <div class="badge">✨ Official Website ✨</div>
         <h1>Hi! I'm Adam! 👋</h1>
-        <p class="hero-subtitle">I'm <strong>9 years old</strong> — Future Astronaut 👨‍🚀, Lego Builder 🧱, Fast Runner 🏃 &amp; Cat Lover 🐱!</p>
+        <p class="hero-subtitle">I'm <strong>9 years old</strong> — Future Astronaut 👨‍🚀, Lego Builder 🧱, Fast Runner 🏃 &amp; Author of the Book of Energy 📖!</p>
         <div class="hero-actions">
-          <a href="#energy" class="btn btn-glow">⚡ Explore Energy &amp; Power Game</a>
-          <a href="#favorites" class="btn btn-secondary">🌟 See My Favorites</a>
+          <a href="#book" class="btn btn-glow">📖 Read My Book of Energy</a>
+          <a href="#energy" class="btn btn-secondary">⚡ Play Power Game</a>
         </div>
       </div>
     </section>
@@ -152,6 +212,23 @@
             <span class="stat-label">Favorite Planet</span>
             <span class="stat-value">Saturn</span>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="book" class="section">
+      <h2>📖 Adam's Book of Energy</h2>
+      <p class="section-hint">Click Next Page and Previous Page to flip through Adam's storybook!</p>
+      <div class="book-wrapper">
+        <div id="book-badge" class="book-page-badge">Page 1 of 5</div>
+        <div id="book-emoji" class="book-emoji">⚡📖</div>
+        <h3 id="book-title" class="book-title">Chapter 1: What Are Energy and Power?</h3>
+        <p id="book-text" class="book-text">
+          Energy is like an invisible superpower inside everything in the universe! Energy makes things move, light up, warm up, and grow. Power is how fast we use or make that energy. Best of all, energy never disappears—it just changes into new forms!
+        </p>
+        <div class="book-controls">
+          <button class="book-btn" onclick="prevBookPage()">⬅️ Previous Page</button>
+          <button class="book-btn" onclick="nextBookPage()">Next Page ➡️</button>
         </div>
       </div>
     </section>
@@ -501,7 +578,54 @@
     let score = 0;
     let highFives = 10;
     let powerLevel = 0;
+    let currentBookPage = 0;
     const emojis = ['🍕', '🐱', '🧱', '🚀', '🪐', '🍦', '⭐', '🍄'];
+
+    const bookPages = [
+      {
+        emoji: '⚡📖',
+        title: 'Chapter 1: What Are Energy and Power?',
+        text: 'Energy is like an invisible superpower inside everything in the universe! Energy makes things move, light up, warm up, and grow. Power is how fast we use or make that energy. Best of all, energy never disappears—it just changes into new forms!'
+      },
+      {
+        emoji: '☀️🛰️',
+        title: 'Chapter 2: Power from the Sun (Solar Energy)',
+        text: 'Every day, the sun sends giant beams of light and heat to Earth and outer space. Solar panels catch sunlight and turn it straight into electricity—even powering space stations and satellites flying around Earth!'
+      },
+      {
+        emoji: '💨🌊',
+        title: 'Chapter 3: Wind & Underwater Ocean Power',
+        text: 'Nature is always moving! When the wind blows, it spins giant wind turbine blades. And deep in rivers and oceans, rushing water spins underwater turbines to create clean electricity!'
+      },
+      {
+        emoji: '🍕🏃',
+        title: 'Chapter 4: Pizza Fuel & Running Superpower!',
+        text: 'Your body is like a living power station! Delicious food like pizza and ice cream holds stored energy inside. When you eat, your body turns it into fuel so your muscles can run super fast and build Lego!'
+      },
+      {
+        emoji: '🚀🪐',
+        title: 'Chapter 5: Rocket Power All the Way to Saturn!',
+        text: 'To travel into outer space and visit Saturn\'s giant icy rings, astronauts need mega power! Rockets blast hot gas downward to push into the sky, and solar wings + super batteries keep the spaceship powered in deep space!'
+      }
+    ];
+
+    function renderBookPage() {
+      const p = bookPages[currentBookPage];
+      document.getElementById('book-badge').textContent = 'Page ' + (currentBookPage + 1) + ' of ' + bookPages.length + ' • By Author Adam';
+      document.getElementById('book-emoji').textContent = p.emoji;
+      document.getElementById('book-title').textContent = p.title;
+      document.getElementById('book-text').textContent = p.text;
+    }
+
+    function nextBookPage() {
+      currentBookPage = (currentBookPage + 1) % bookPages.length;
+      renderBookPage();
+    }
+
+    function prevBookPage() {
+      currentBookPage = (currentBookPage - 1 + bookPages.length) % bookPages.length;
+      renderBookPage();
+    }
 
     function addPower(amount, message) {
       if (powerLevel >= 100) return;
