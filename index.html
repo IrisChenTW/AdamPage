@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🚀 Adam's Awesome Universe!</title>
-  <link rel="stylesheet" href="style.css?v=5" />
+  <link rel="stylesheet" href="style.css?v=6" />
   <style>
-    /* Critical inline styles so images, energy game, and flip-book always render cleanly */
+    /* Critical inline styles so images, energy game, and 10-chapter flip-book always render cleanly */
     .card {
       overflow: hidden;
       text-align: center;
@@ -94,13 +94,13 @@
       min-height: 2.2rem;
       color: #86efac;
     }
-    /* Book of Energy styles */
+    /* 10-Chapter Book of Energy styles */
     .book-wrapper {
       background: #fffbeb;
       border: 4px solid #f59e0b;
       border-radius: 22px;
-      padding: 2rem;
-      max-width: 780px;
+      padding: 2.2rem;
+      max-width: 840px;
       margin: 0 auto 2.5rem;
       box-shadow: 0 12px 28px rgba(180, 83, 9, 0.18);
       text-align: center;
@@ -111,26 +111,68 @@
       border: 2px solid #f59e0b;
       color: #b45309;
       font-weight: 800;
-      padding: 0.25rem 1rem;
+      padding: 0.3rem 1.1rem;
       border-radius: 999px;
       margin-bottom: 1rem;
-      font-size: 1.05rem;
+      font-size: 1.1rem;
     }
     .book-emoji {
-      font-size: 4rem;
+      font-size: 4.2rem;
       margin-bottom: 0.5rem;
     }
     .book-title {
-      font-size: 2rem;
+      font-size: 2.1rem;
       color: #92400e;
-      margin-bottom: 0.75rem;
+      margin-bottom: 1rem;
     }
     .book-text {
       font-size: 1.35rem;
       color: #1e293b;
-      max-width: 620px;
+      max-width: 680px;
+      margin: 0 auto 1.25rem;
+      line-height: 1.75;
+      text-align: left;
+      background: #ffffff;
+      padding: 1.5rem;
+      border-radius: 16px;
+      border: 2px solid #fde68a;
+    }
+    .book-secret {
+      background: linear-gradient(135deg, #fef3c7, #fde68a);
+      border: 2px solid #f59e0b;
+      color: #78350f;
+      padding: 1rem 1.4rem;
+      border-radius: 14px;
+      max-width: 680px;
       margin: 0 auto 1.5rem;
-      line-height: 1.7;
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-align: left;
+    }
+    .chapter-jump {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 1.25rem;
+    }
+    .ch-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #d97706;
+      background: #fffbeb;
+      color: #92400e;
+      font-weight: 800;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .ch-btn.active,
+    .ch-btn:hover {
+      background: #d97706;
+      color: white;
+      transform: scale(1.1);
     }
     .book-controls {
       display: flex;
@@ -140,8 +182,8 @@
       flex-wrap: wrap;
     }
     .book-btn {
-      padding: 0.75rem 1.5rem;
-      font-size: 1.15rem;
+      padding: 0.8rem 1.6rem;
+      font-size: 1.2rem;
       font-weight: 800;
       border-radius: 999px;
       border: none;
@@ -167,7 +209,7 @@
       </div>
       <ul class="nav-links">
         <li><a href="#about">About Me</a></li>
-        <li><a href="#book">📖 Energy Book</a></li>
+        <li><a href="#book">📖 10-Ch Energy Book</a></li>
         <li><a href="#energy">⚡ Power Game</a></li>
         <li><a href="#game">Mini-Game</a></li>
         <li><a href="#favorites">Favorites</a></li>
@@ -180,9 +222,9 @@
       <div class="hero-content">
         <div class="badge">✨ Official Website ✨</div>
         <h1>Hi! I'm Adam! 👋</h1>
-        <p class="hero-subtitle">I'm <strong>9 years old</strong> — Future Astronaut 👨‍🚀, Lego Builder 🧱, Fast Runner 🏃 &amp; Author of the Book of Energy 📖!</p>
+        <p class="hero-subtitle">I'm <strong>9 years old</strong> — Future Astronaut 👨‍🚀, Lego Builder 🧱, Fast Runner 🏃 &amp; Author of the 10-Chapter Book of Energy 📖!</p>
         <div class="hero-actions">
-          <a href="#book" class="btn btn-glow">📖 Read My Book of Energy</a>
+          <a href="#book" class="btn btn-glow">📖 Read My 10-Chapter Energy Book</a>
           <a href="#energy" class="btn btn-secondary">⚡ Play Power Game</a>
         </div>
       </div>
@@ -217,18 +259,35 @@
     </section>
 
     <section id="book" class="section">
-      <h2>📖 Adam's Book of Energy</h2>
-      <p class="section-hint">Click Next Page and Previous Page to flip through Adam's storybook!</p>
+      <h2>📖 Adam's Complete Book of Energy (10 Chapters!)</h2>
+      <p class="section-hint">Click any chapter number (1–10) or use Next &amp; Previous Page to read Adam's full science book!</p>
       <div class="book-wrapper">
-        <div id="book-badge" class="book-page-badge">Page 1 of 5</div>
+        <div id="book-badge" class="book-page-badge">Chapter 1 of 10 • By Author Adam (Age 9)</div>
+
+        <div class="chapter-jump" id="chapter-jump">
+          <button class="ch-btn active" onclick="goToBookPage(0)">1</button>
+          <button class="ch-btn" onclick="goToBookPage(1)">2</button>
+          <button class="ch-btn" onclick="goToBookPage(2)">3</button>
+          <button class="ch-btn" onclick="goToBookPage(3)">4</button>
+          <button class="ch-btn" onclick="goToBookPage(4)">5</button>
+          <button class="ch-btn" onclick="goToBookPage(5)">6</button>
+          <button class="ch-btn" onclick="goToBookPage(6)">7</button>
+          <button class="ch-btn" onclick="goToBookPage(7)">8</button>
+          <button class="ch-btn" onclick="goToBookPage(8)">9</button>
+          <button class="ch-btn" onclick="goToBookPage(9)">10</button>
+        </div>
+
         <div id="book-emoji" class="book-emoji">⚡📖</div>
-        <h3 id="book-title" class="book-title">Chapter 1: What Are Energy and Power?</h3>
-        <p id="book-text" class="book-text">
-          Energy is like an invisible superpower inside everything in the universe! Energy makes things move, light up, warm up, and grow. Power is how fast we use or make that energy. Best of all, energy never disappears—it just changes into new forms!
-        </p>
+        <h3 id="book-title" class="book-title">Chapter 1: The Secret of Energy &amp; Power</h3>
+        <div id="book-text" class="book-text">
+          Have you ever wondered what makes a rocket blast into the sky, a cat leap onto a couch, or a light bulb glow in the dark? The answer is Energy! Energy is the invisible superpower that makes everything in the universe move, shine, warm up, and grow. Power measures how FAST energy is used or made—like a fast race car compared to a bicycle!
+        </div>
+        <div id="book-secret" class="book-secret">
+          🌟 Adam's Science Secret: Energy can never be created out of nothing or destroyed—it just changes its costume from one form into another!
+        </div>
         <div class="book-controls">
-          <button class="book-btn" onclick="prevBookPage()">⬅️ Previous Page</button>
-          <button class="book-btn" onclick="nextBookPage()">Next Page ➡️</button>
+          <button class="book-btn" onclick="prevBookPage()">⬅️ Previous Chapter</button>
+          <button class="book-btn" onclick="nextBookPage()">Next Chapter ➡️</button>
         </div>
       </div>
     </section>
@@ -584,37 +643,84 @@
     const bookPages = [
       {
         emoji: '⚡📖',
-        title: 'Chapter 1: What Are Energy and Power?',
-        text: 'Energy is like an invisible superpower inside everything in the universe! Energy makes things move, light up, warm up, and grow. Power is how fast we use or make that energy. Best of all, energy never disappears—it just changes into new forms!'
+        title: 'Chapter 1: The Secret of Energy & Power',
+        text: 'Have you ever wondered what makes a rocket blast into the sky, a cat leap onto a couch, or a light bulb glow in the dark? The answer is Energy! Energy is the invisible superpower that makes everything in the universe move, shine, warm up, and grow. Power measures how FAST energy is used or made—like a fast race car compared to a bicycle!',
+        secret: '🌟 Adam\'s Science Secret: Energy can never be created out of nothing or destroyed—it just changes its costume from one form into another!'
       },
       {
         emoji: '☀️🛰️',
-        title: 'Chapter 2: Power from the Sun (Solar Energy)',
-        text: 'Every day, the sun sends giant beams of light and heat to Earth and outer space. Solar panels catch sunlight and turn it straight into electricity—even powering space stations and satellites flying around Earth!'
+        title: 'Chapter 2: Power from the Giant Sun (Solar Energy)',
+        text: 'High up in the sky, our sun is like a giant glowing ball of fire and nuclear energy. It takes sunlight only 8 minutes to travel 93 million miles to Earth! Solar panels are made of special shiny silicon crystals that catch sunlight and turn it straight into clean electricity.',
+        secret: '🌟 Adam\'s Science Secret: In outer space, there are no power cords! That is why satellites and space stations use giant golden solar wings to catch sunlight!'
       },
       {
-        emoji: '💨🌊',
-        title: 'Chapter 3: Wind & Underwater Ocean Power',
-        text: 'Nature is always moving! When the wind blows, it spins giant wind turbine blades. And deep in rivers and oceans, rushing water spins underwater turbines to create clean electricity!'
+        emoji: '💨🌬️',
+        title: 'Chapter 3: Catching the Invisible Wind (Wind Power)',
+        text: 'You cannot see the wind, but you can feel it push against your face when you run outside in the spring! When the sun warms the Earth, warm air rises and cool air rushes in—making wind. Giant wind turbines have blades as long as airplane wings that spin generators to power hundreds of homes!',
+        secret: '🌟 Adam\'s Science Secret: The taller a wind turbine stands in the sky, the stronger and faster the wind blows!'
+      },
+      {
+        emoji: '🌊🤿',
+        title: 'Chapter 4: Deep Ocean & River Power (Hydro Energy)',
+        text: 'Water is heavy and powerful! Hydroelectric dams let rushing river water spin giant underground water wheels called turbines. Ocean wave and tidal generators also use moving seawater deep underwater to make clean electricity without any smoke or pollution!',
+        secret: '🌟 Adam\'s Science Secret: Because water is 800 times denser than air, even a slow underwater wave carries a huge amount of power!'
       },
       {
         emoji: '🍕🏃',
-        title: 'Chapter 4: Pizza Fuel & Running Superpower!',
-        text: 'Your body is like a living power station! Delicious food like pizza and ice cream holds stored energy inside. When you eat, your body turns it into fuel so your muscles can run super fast and build Lego!'
+        title: 'Chapter 5: Pizza Fuel & Super Running Power!',
+        text: 'Did you know your own body is a living power plant? Hot cheesy pizza and sweet ice cream are packed with stored chemical energy that originally came from the sun growing plants! When you eat, your body turns that food into heat and motion energy so you can run super fast and build Lego!',
+        secret: '🌟 Adam\'s Science Secret: Even when you sit still reading a Smurfs story, your brain uses 20% of all your body\'s energy just to think and imagine!'
+      },
+      {
+        emoji: '🐱⚡',
+        title: 'Chapter 6: Cat Naps & Animal Super Energy',
+        text: 'Have you ever watched a cat curl up in a warm sunny spot and nap for hours? Cats are masters of saving energy! By sleeping in the warm sun, a cat saves its body fuel. Then—ZOOM!—it turns all that saved potential energy into fast kinetic energy, leaping high into the air!',
+        secret: '🌟 Adam\'s Science Secret: A cat\'s back legs work like coiled springs, storing elastic energy right before a big pounce!'
+      },
+      {
+        emoji: '🌩️💡',
+        title: 'Chapter 7: Lightning Bolts & Everyday Electricity',
+        text: 'Everything is made of tiny building blocks called atoms, which have even tinier zippy particles called electrons. When billions of electrons march together through a wire, it makes an electric current that lights up your room! In a storm, clouds build up giant static electricity until a lightning bolt flashes!',
+        secret: '🌟 Adam\'s Science Secret: A single bolt of lightning is five times hotter than the surface of the sun and has enough energy to toast 100,000 slices of bread!'
+      },
+      {
+        emoji: '🌋🇹🇼',
+        title: 'Chapter 8: Volcanoes & Earth\'s Secret Heat (Geothermal)',
+        text: 'Deep beneath our feet, the center of the Earth is super hot! This underground heat is called Geothermal Energy. In special places like Taiwan, underground heat warms up natural hot springs where steam bubbles out of the ground, and engineers can use that steam to spin turbines!',
+        secret: '🌟 Adam\'s Science Secret: Unlike solar or wind power, Earth\'s underground heat works 24 hours a day—even on cloudy, windless nights!'
+      },
+      {
+        emoji: '🔋🚗',
+        title: 'Chapter 9: Super Batteries & Storing Power for Nighttime',
+        text: 'What happens at night when the sun goes down, or when the wind stops blowing? Batteries save the day! Batteries store electricity as chemical energy and release it whenever you press the button—powering electric cars, tablets, and even an astronaut\'s spacesuit backpack!',
+        secret: '🌟 Adam\'s Science Secret: Engineers also store energy using "water batteries" by pumping water uphill into a mountain lake when the sun is shining, then letting it rush down at night!'
       },
       {
         emoji: '🚀🪐',
-        title: 'Chapter 5: Rocket Power All the Way to Saturn!',
-        text: 'To travel into outer space and visit Saturn\'s giant icy rings, astronauts need mega power! Rockets blast hot gas downward to push into the sky, and solar wings + super batteries keep the spaceship powered in deep space!'
+        title: 'Chapter 10: Mega Rocket Power All the Way to Saturn!',
+        text: 'Now it is time for Future Astronaut Adam\'s biggest mission: flying to Saturn\'s giant icy rings! To escape Earth\'s gravity, a rocket burns fuel and shoots hot gas downward at over 7,000 miles per hour to blast UP! In deep space, solar wings and nuclear space batteries keep the ship powered!',
+        secret: '🌟 Adam\'s Science Secret: In outer space there is no air to slow a rocket down, so once it gets moving fast, it can coast toward Saturn for years using almost zero fuel!'
       }
     ];
 
     function renderBookPage() {
       const p = bookPages[currentBookPage];
-      document.getElementById('book-badge').textContent = 'Page ' + (currentBookPage + 1) + ' of ' + bookPages.length + ' • By Author Adam';
+      document.getElementById('book-badge').textContent = 'Chapter ' + (currentBookPage + 1) + ' of ' + bookPages.length + ' • By Author Adam (Age 9)';
       document.getElementById('book-emoji').textContent = p.emoji;
       document.getElementById('book-title').textContent = p.title;
       document.getElementById('book-text').textContent = p.text;
+      document.getElementById('book-secret').textContent = p.secret;
+
+      const buttons = document.querySelectorAll('.ch-btn');
+      buttons.forEach((btn, idx) => {
+        if (idx === currentBookPage) btn.classList.add('active');
+        else btn.classList.remove('active');
+      });
+    }
+
+    function goToBookPage(index) {
+      currentBookPage = index;
+      renderBookPage();
     }
 
     function nextBookPage() {
