@@ -35,11 +35,11 @@ Suddenly, deep underwater, a giant hungry **Shark** spots **Captain Minion** and
 
 ---
 
-## 🍕 Chapter 5: Pizza Fuel & Super Running Power (Body Energy)
-Did you know that your own body is an amazing living power plant?
-- Food like hot **cheesy pizza** and sweet **ice cream** is packed with **stored chemical energy**. That energy originally came from the sun, which helped grow the wheat and tomatoes!
-- When you eat pizza, your stomach and muscles turn that stored fuel into **thermal energy** (to keep your body warm) and **kinetic motion energy** (so you can run super fast in sports class and build big Lego towers!).
-- **🌟 Adam's Science Secret:** Even when you are sitting still and reading a Smurfs book, your brain uses about one-fifth of all your body's energy just to think and imagine!
+## 🍕💛🚀 Chapter 5: Captain Minion's Super Space Pizza Fuel!
+After escaping the shark and flying high above the clouds with the Giant Wind Propeller, **Captain Minion** and his Minion sidekick get super hungry!
+- **Space Pizza Oven**: They bake a hot, cheesy **Super Pizza** right inside their Lego Spaceship! Food like pizza is packed with **stored chemical energy** that originally came from the sun helping grow the wheat and tomatoes.
+- **Motion Power**: When Captain Minion and the Minion eat the pizza, their bodies turn that stored fuel into **thermal energy** (to stay warm) and **kinetic motion energy** (so they can run fast and pilot the Lego Spaceship!).
+- **🌟 Captain Minion's Science Secret:** Even when Captain Minion is sitting still reading a Smurfs story, his brain uses one-fifth of all his body's energy just to think and imagine!
 
 ---
 
