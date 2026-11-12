@@ -19,11 +19,11 @@ High up in the sky, our sun is like a giant glowing ball of fire and nuclear ene
 
 ---
 
-## 💨 Chapter 3: Catching the Invisible Wind (Wind Power)
-You cannot see the wind, but you can feel it push against your face when you run outside in the spring!
-- **Where does wind come from?** When the sun warms up the Earth, warm air rises up into the sky like a hot-air balloon, and cool air rushes in to take its place. That moving air is **wind**!
-- Giant **Wind Turbines** have three long blades—sometimes as long as an airplane wing! When the wind pushes the blades around, a generator inside spins to make electricity for hundreds of homes.
-- **🌟 Adam's Science Secret:** The taller a wind turbine is, the stronger and faster the wind blows!
+## 💨🧱🚁 Chapter 3: The Giant Lego Wind Propeller in the Sky!
+As soon as the **Lego Spaceship** bursts out of the ocean into the sky, **Captain Minion** and his Minion sidekick press a big red Lego button to pop out a **Giant Wind Propeller**!
+- **Where does wind come from?** When the sun warms up the Earth, warm air rises up into the sky and cool air rushes in to take its place. That moving air is **wind**!
+- **Spinning Power**: High up in the clouds, the strong sky wind spins Captain Minion's **Giant Wind Propeller** around and around, turning a generator inside to fill the spaceship's batteries with clean **Wind Energy**!
+- **🌟 Captain Minion's Science Secret:** The higher up in the sky the Giant Wind Propeller goes, the stronger and faster the wind blows!
 
 ---
 
