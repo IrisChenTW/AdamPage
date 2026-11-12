@@ -589,7 +589,7 @@
       flex-wrap: wrap;
     }
     .lang-btn {
-      padding: 0.45rem 0.85rem;
+      padding: 0.45rem 0.9rem;
       font-size: 1rem;
       font-weight: 800;
       border-radius: 999px;
@@ -598,6 +598,18 @@
       color: #ffffff;
       cursor: pointer;
       transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .lang-flag {
+      width: 24px;
+      height: 16px;
+      border-radius: 3px;
+      display: inline-block;
+      vertical-align: middle;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+      flex-shrink: 0;
     }
     .lang-btn.active, .lang-btn:hover {
       background: #facc15;
@@ -611,10 +623,41 @@
     <nav class="navbar">
       <div class="logo" id="nav-logo">🚀 Adam's Universe</div>
       <div class="lang-buttons">
-        <button onclick="setLang('en')" id="lang-en" class="lang-btn active">🇬🇧 English</button>
-        <button onclick="setLang('de')" id="lang-de" class="lang-btn">🇩🇪 Deutsch</button>
-        <button onclick="setLang('gsw')" id="lang-gsw" class="lang-btn">🇨🇭 Schwiizerdütsch</button>
-        <button onclick="setLang('zh')" id="lang-zh" class="lang-btn">🇹🇼 中文</button>
+        <button onclick="setLang('en')" id="lang-en" class="lang-btn active">
+          <svg class="lang-flag" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg">
+            <rect width="60" height="30" fill="#012169"/>
+            <path d="M0,0 L60,30 M60,0 L0,30" stroke="#ffffff" stroke-width="6"/>
+            <path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="3.5"/>
+            <path d="M30,0 V30 M0,15 H60" stroke="#ffffff" stroke-width="10"/>
+            <path d="M30,0 V30 M0,15 H60" stroke="#C8102E" stroke-width="6"/>
+          </svg>
+          <span>English</span>
+        </button>
+        <button onclick="setLang('de')" id="lang-de" class="lang-btn">
+          <svg class="lang-flag" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="width:18px;height:18px;">
+            <rect width="32" height="32" rx="3" fill="#DA291C"/>
+            <rect x="13" y="6" width="6" height="20" fill="#ffffff"/>
+            <rect x="6" y="13" width="20" height="6" fill="#ffffff"/>
+          </svg>
+          <span>Hochdeutsch</span>
+        </button>
+        <button onclick="setLang('gsw')" id="lang-gsw" class="lang-btn">
+          <svg class="lang-flag" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="width:18px;height:18px;">
+            <rect width="32" height="32" rx="3" fill="#DA291C"/>
+            <rect x="13" y="6" width="6" height="20" fill="#ffffff"/>
+            <rect x="6" y="13" width="20" height="6" fill="#ffffff"/>
+          </svg>
+          <span>Schwiizerdütsch</span>
+        </button>
+        <button onclick="setLang('zh')" id="lang-zh" class="lang-btn">
+          <svg class="lang-flag" viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
+            <rect width="60" height="40" fill="#FE0000"/>
+            <rect width="30" height="20" fill="#000095"/>
+            <polygon points="15,3 16.8,7.8 21.5,5.5 19.2,10.2 24,12 19.2,13.8 21.5,18.5 16.8,16.2 15,21 13.2,16.2 8.5,18.5 10.8,13.8 6,12 10.8,10.2 8.5,5.5 13.2,7.8" fill="#ffffff"/>
+            <circle cx="15" cy="12" r="4.2" fill="#ffffff" stroke="#000095" stroke-width="1.2"/>
+          </svg>
+          <span>中文</span>
+        </button>
       </div>
       <div class="theme-buttons">
         <button onclick="setTheme('theme-space')" class="theme-btn" id="theme-btn-space">🪐 Space Blue</button>
@@ -1941,14 +1984,14 @@
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
         const utter = new SpeechSynthesisUtterance(movieScenes[currentScene].caption);
-        utter.lang = currentLang === 'gsw' ? 'de-CH' : (currentLang === 'de' ? 'de-DE' : (currentLang === 'zh' ? 'zh-TW' : 'en-US'));
+        utter.lang = (currentLang === 'de' || currentLang === 'gsw') ? 'de-CH' : (currentLang === 'zh' ? 'zh-TW' : 'en-GB');
         utter.rate = 0.95;
         utter.pitch = 1.1;
         window.speechSynthesis.speak(utter);
       }
     }
 
-    // --- 3-Language System: English (en), German (de), Mandarin (zh) ---
+    // --- 3-Language System: British English (en), Swiss High German (de), Taiwan Mandarin (zh) ---
     let currentLang = 'en';
     const enBookPages = JSON.parse(JSON.stringify(bookPages));
     const enMovieScenes = JSON.parse(JSON.stringify(movieScenes));
@@ -1958,7 +2001,7 @@
       {
         emoji: '🌊💛🧱',
         title: 'Kapitel 1: Captain Minions geheime Unterwasser-Lego-Basis!',
-        text: 'Unsere Geschichte beginnt tief unter Wasser am Meeresboden! Mit seiner Unterwasser-Superkraft haben der 9-jährige Held Captain Minion (Adam) und sein treuer gelber Minion-Freund ein riesiges, super-starkes Raumschiff komplett aus Lego-Steinen gebaut! Um vom Meeresboden bis in den Weltraum zu starten, brauchen sie die größte Superkraft im Universum: Energie!',
+        text: 'Unsere Geschichte beginnt tief unter Wasser am Meeresboden! Mit seiner Unterwasser-Superkraft haben der 9-jährige Held Captain Minion (Adam) und sein treuer gelber Minion-Freund ein riesiges, super-starkes Raumschiff komplett aus Lego-Steinen gebaut! Um vom Meeresboden bis in den Weltraum zu starten, brauchen sie die grösste Superkraft im Universum: Energie!',
         secret: '🌟 Captain Minions Wissenschafts-Geheimnis: Energie kann niemals aus dem Nichts entstehen oder verschwinden – sie wechselt nur ihre Form!'
       },
       {
@@ -1970,7 +2013,7 @@
       {
         emoji: '💨🧱🚁',
         title: 'Kapitel 3: Der riesige Lego-Windpropeller am Himmel!',
-        text: 'Sobald das Lego-Raumschiff aus dem Ozean in den Himmel schießt, drücken Captain Minion und sein Minion-Freund einen roten Lego-Knopf und fahren einen riesigen Windpropeller aus! Hoch in den Wolken dreht der starke Wind die Propellerblätter und lädt das Raumschiff mit sauberer Windkraft auf!',
+        text: 'Sobald das Lego-Raumschiff aus dem Ozean in den Himmel schiesst, drücken Captain Minion und sein Minion-Freund einen roten Lego-Knopf und fahren einen riesigen Windpropeller aus! Hoch in den Wolken dreht der starke Wind die Propellerblätter und lädt das Raumschiff mit sauberer Windkraft auf!',
         secret: '🌟 Captain Minions Wissenschafts-Geheimnis: Je höher dein Windpropeller in den Himmel steigt, desto stärker und schneller weht der Wind!'
       },
       {
@@ -1982,7 +2025,7 @@
       {
         emoji: '🍕💛🚀',
         title: 'Kapitel 5: Captain Minions Super-Weltraum-Pizza-Treibstoff!',
-        text: 'Nach der Flucht vor dem Hai bekommen Captain Minion und sein Minion-Freund großen Hunger! Sie backen eine heiße, käsige Super-Pizza im Lego-Raumschiff-Ofen! Pizza steckt voller gespeicherter Energie, die ihre Muskeln mit Bewegungsenergie auflädt, damit sie schnell rennen und das Schiff steuern können!',
+        text: 'Nach der Flucht vor dem Hai bekommen Captain Minion und sein Minion-Freund grossen Hunger! Sie backen eine heisse, käsige Super-Pizza im Lego-Raumschiff-Ofen! Pizza steckt voller gespeicherter Energie, die ihre Muskeln mit Bewegungsenergie auflädt, damit sie schnell rennen und das Schiff steuern können!',
         secret: '🌟 Captain Minions Wissenschafts-Geheimnis: Selbst wenn Captain Minion eine Schlümpfe-Geschichte liest, verbraucht sein Gehirn 20 % seiner Pizza-Energie nur zum Denken!'
       },
       {
@@ -1994,25 +2037,25 @@
       {
         emoji: '🛡️⚡💛',
         title: 'Kapitel 7: Der leuchtende Elektro-Schild im Gewittersturm!',
-        text: 'Als das Lego-Raumschiff höher fliegt, saust es in eine blitzende Gewitterwolke! Als ein riesiger Blitz auf das Schiff zuschießt, drückt der Minion den blauen Knopf und aktiviert ein leuchtendes elektrisches Schutzschild, an dem die Blitze wie Tischtennisbälle abprallen!',
-        secret: '🌟 Captain Minions Wissenschafts-Geheimnis: Ein einziger Blitz ist fünfmal heißer als die Sonnenoberfläche und hat genug Strom, um 100.000 Brotscheiben zu toasten!'
+        text: 'Als das Lego-Raumschiff höher fliegt, saust es in eine blitzende Gewitterwolke! Als ein riesiger Blitz auf das Schiff zuschiesst, drückt der Minion den blauen Knopf und aktiviert ein leuchtendes elektrisches Schutzschild, an dem die Blitze wie Pingpong-Bälle abprallen!',
+        secret: '🌟 Captain Minions Wissenschafts-Geheimnis: Ein einziger Blitz ist fünfmal heisser als die Sonnenoberfläche und hat genug Strom, um 100.000 Brotscheiben zu toasten!'
       },
       {
         emoji: '🍄🌋⚡',
         title: 'Kapitel 8: Die Schlümpfe & der warme Vulkan!',
-        text: 'Vor dem Flug ins tiefe Weltall landen Captain Minion und sein Minion-Freund in einem geheimen Schlumpfdorf neben einem warmen Vulkan! Die Schlümpfe zeigen ihnen, wie die Erdwärme tief unter unseren Füßen ihre Pilzhäuser wärmt und Dampf erzeugt, um das Raumschiff aufzuladen!',
+        text: 'Vor dem Flug ins tiefe Weltall landen Captain Minion und sein Minion-Freund in einem geheimen Schlumpfdorf neben einem warmen Vulkan! Die Schlümpfe zeigen ihnen, wie die Erdwärme tief unter unseren Füssen ihre Pilzhäuser wärmt und Dampf erzeugt, um das Raumschiff aufzuladen!',
         secret: '🌟 Captain Minions Wissenschafts-Geheimnis: Anders als Sonnen- oder Windkraft funktioniert die unterirdische Vulkanwärme der Erde 24 Stunden am Tag!'
       },
       {
         emoji: '🧱💎🔋',
         title: 'Kapitel 9: Leuchtende blaue Lego-Power-Steine!',
         text: 'Was passiert im dunklen Weltraum weit weg von der Sonne? Captain Minion baut einen Turm aus leuchtenden blauen Lego-Power-Steinen! Diese Super-Batterien speichern den gesamten Sonnen-, Wind-, Wasser- und Vulkanstrom und leuchten im Dunkeln bis zum Saturn!',
-        secret: '🌟 Captain Minions Wissenschafts-Geheimnis: Ingenieure auf der Erde nutzen auch „Wasserbatterien“, indem sie tagsüber Wasser auf einen Berg pumpen!'
+        secret: '🌟 Captain Minions Wissenschafts-Geheimnis: Ingenieure in der Schweiz und auf der Erde nutzen auch „Wasserbatterien“ in den Bergen, indem sie tagsüber Wasser in einen Stausee hinaufpumpen!'
       },
       {
         emoji: '👽🪐🧱',
         title: 'Kapitel 10: Landung auf dem Saturn & Treffen mit dem Alien!',
-        text: 'Jetzt startet die größte Mission: der Flug mit dem riesigen Lego-Raumschiff bis zum Saturn! Als sie endlich auf den glitzernden Eisringen des Saturn landen, hüpft ein freundliches Saturn-Alien hervor, begrüßt sie und teilt kosmische Ring-Energie!',
+        text: 'Jetzt startet die grösste Mission: der Flug mit dem riesigen Lego-Raumschiff bis zum Saturn! Als sie endlich auf den glitzernden Eisringen des Saturn landen, hüpft ein freundliches Saturn-Alien hervor, begrüsst sie und teilt kosmische Ring-Energie!',
         secret: '🌟 Captain Minions Wissenschafts-Geheimnis: Im Weltraum gibt es keine Luft, die bremst – deshalb gleitet das Lego-Raumschiff fast ohne Treibstoff bis zum Saturn!'
       }
     ];
@@ -2093,12 +2136,12 @@
       },
       {
         title: '🎬 Szene 3 von 5: Weltraum-Pizza & Lunas Rückwärtssaltos!',
-        caption: '🐱🍕 In der Kabine backt Captain Minion heiße Pizza, während Weltraumkatze Luna coole Rückwärtssaltos in der Schwerelosigkeit macht!',
+        caption: '🐱🍕 In der Kabine backt Captain Minion heisse Pizza, während Weltraumkatze Luna coole Rückwärtssaltos in der Schwerelosigkeit macht!',
         bg1: '#312e81', bg2: '#090d16'
       },
       {
         title: '🎬 Szene 4 von 5: Schlumpf-Vulkan & Elektro-Blitzschild!',
-        caption: '🍄⚡ Nach dem Aufladen am warmen Vulkan der Schlümpfe lässt das leuchtende Elektroschild Gewitterblitze wie Tischtennisbälle abprallen!',
+        caption: '🍄⚡ Nach dem Aufladen am warmen Vulkan der Schlümpfe lässt das leuchtende Elektroschild Gewitterblitze wie Pingpong-Bälle abprallen!',
         bg1: '#1e1b4b', bg2: '#020617'
       },
       {
@@ -2154,7 +2197,7 @@
       },
       {
         q: '🍄 Wie halten die Schlümpfe ihre Pilzhäuser Tag und Nacht warm?',
-        options: ['🍦 Kaltes Eis', '🌋 Unterirdische Vulkanwärme', '🌧️ Regentropfen'],
+        options: ['🍦 Kalte Glace', '🌋 Unterirdische Vulkanwärme', '🌧️ Regentropfen'],
         answer: 1
       },
       {
@@ -2275,7 +2318,7 @@
         themes: ["🪐 Weltraum-Blau", "🌊 Unterwasser", "🌸 Frühling"],
         nav: ["Über mich", "🎬 Weltraum-Video", "📖 Captain Minion Buch", "⚡ Energie-Spiel", "🎮 Spiele", "Favoriten"],
         heroBadge: "✨ Offizielle Webseite ✨",
-        heroTitle: "Hallo! Ich bin Adam (Captain Minion)! 👋💛",
+        heroTitle: "Grüezi! Ich bin Adam (Captain Minion)! 👋💛",
         heroSub: "Ich bin <strong>9 Jahre alt</strong> — Zukünftiger Astronaut 👨‍🚀, Lego-Baumeister 🧱, Schneller Läufer 🏃 &amp; Autor des <strong>Captain Minion</strong> Buchs 📖!",
         heroBtns: ["🎬 Mein Weltraum-Video ansehen!", "📖 „Captain Minion“ Buch lesen", "🎮 10 Weltraum-Spiele spielen"],
         movieH2: "🎬 Captain Minion: Das animierte Weltraum-Video!",
@@ -2294,10 +2337,10 @@
         energyGameP: "Klicke auf die sauberen Energiequellen, um die Batterie auf 100 % zu laden und die Rakete zu starten!",
         powerBtns: ["☀️ Sonnenlicht (+10%)", "💨 Windrad (+15%)", "🌊 Wasserkraft (+20%)"],
         energyCards: [
-          ["☀️ Sonnenenergie", "Solarmodule fangen Sonnenlicht ein und machen daraus Strom – sogar auf Raumschiffen!"],
+          ["☀️ Sonnenenergie", "Solarpanels fangen Sonnenlicht ein und machen daraus Strom – sogar auf Raumschiffen!"],
           ["💨 Windenergie", "Wind dreht riesige Windräder, um sauberen Strom für Häuser und Schulen zu erzeugen!"],
           ["🌊 Wasser-Energie", "Schnelle Flüsse und Meereswellen treiben Wasserturbinen an und erzeugen Strom!"],
-          ["🏃 Essens- & Bewegungsenergie", "Essen wie Pizza gibt deinem Körper Energie, damit du schnell rennen und Sport machen kannst!"]
+          ["🏃 Essens- & Bewegungsenergie", "Essen wie Pizza gibt deinem Körper Energie, damit du schnell rennen und Sport treiben kannst!"]
         ],
         gameH2: "🎮 Adams Spiele-Arkade!",
         g1Title: "🎯 Spiel 1: Weltraum-Klicker!",
@@ -2320,7 +2363,7 @@
           "Du bist 🐱 Weltraumkatze Luna! Schaffe 3 in einer Reihe vor dem 👽 Saturn-Alien!",
           "Wähle eine leuchtende Lego-Farbe und klicke auf die Felder, um dein Lego-Kunstwerk zu bauen!",
           "Teste dein Superwissen über den Saturn, Weltraumenergie, Katze Luna & Captain Minion!",
-          "Füttere Katze Luna mit Pizza & Eis für neue Energie und lass sie Rückwärtssaltos machen!",
+          "Füttere Katze Luna mit Pizza & Glace für neue Energie und lass sie Rückwärtssaltos machen!",
           "Renne schnell über die Saturnringe! Springe über 🦈 Haie & ☄️ Meteore und schnapp dir 🍕 Pizza!",
           "Backe Weltraum-Pizza für Luna, die Minions, die Schlümpfe & das Saturn-Alien mit den richtigen Zutaten!"
         ],
@@ -2328,16 +2371,16 @@
         favHint: "Klicke auf eine Karte für eine lustige Überraschung!",
         favCards: [
           ["🧱 Mit Lego bauen", "Ich liebe es, coole Sachen zu bauen und mit Lego zu spielen!"],
-          ["🐱 Süße Katzen", "Katzen sind meine absoluten Lieblingstiere auf der ganzen Welt!"],
-          ["🍕 Leckere Pizza", "Mein absolutes Lieblingsessen ist heiße Käsepizza!"],
+          ["🐱 Süsse Katzen", "Katzen sind meine absoluten Lieblingstiere auf der ganzen Welt!"],
+          ["🍕 Leckere Pizza", "Mein absolutes Lieblingsessen ist heisse Käsepizza!"],
           ["🍄 Die Schlümpfe & Geschichten", "Meine liebsten Zeichentrickfiguren und Geschichten sind die Schlümpfe!"],
           ["💛 Minions", "Meine lustigsten Lieblingsfilmfiguren sind die Minions!"],
-          ["🏃 Laufen & Sport", "Laufen ist mein Lieblingssport Nummer eins in der Schule!"],
+          ["🏃 Laufen & Sport", "Rennen ist mein Lieblingssport Nummer eins in der Schule!"],
           ["🌊 Unterwasser-Superkraft", "Tief unter Wasser tauchen, schwimmen und den Ozean entdecken!"],
           ["🚀 Weltraum", "Mein Traumabenteuer ist ein Raketenstart in den Weltraum!"],
-          ["👨‍🚀 Zukünftiger Astronaut", "Wenn ich groß bin, möchte ich Astronaut werden und die Sterne erforschen!"],
+          ["👨‍🚀 Zukünftiger Astronaut", "Wenn ich gross bin, möchte ich Astronaut werden und die Sterne erforschen!"],
           ["🪐 Saturn", "Der Saturn mit seinen riesigen Eisringen ist mein Lieblingsplanet!"],
-          ["🍦 Eiscreme", "Mein süßes Lieblingsdessert ist kaltes, leckeres Eis!"],
+          ["🍦 Feine Glace", "Mein süsses Lieblingsdessert ist kalte, feine Glace!"],
           ["🇹🇼 Taiwan", "Besonderer Ort: Taiwan und der berühmte Turm Taipei 101!"],
           ["🌸 Frühling", "Der Frühling mit Blumen und warmen Tagen ist meine Lieblingsjahreszeit!"],
           ["☀️ Sommerferien", "Meine liebsten Ferien sind die Sommerferien voller Abenteuer!"],
@@ -2624,7 +2667,7 @@
 
     function setLang(lang) {
       currentLang = lang;
-      document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : (lang === 'gsw' ? 'de-CH' : lang);
+      document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : ((lang === 'gsw' || lang === 'de') ? 'de-CH' : 'en-GB');
       ['en', 'de', 'gsw', 'zh'].forEach(l => {
         const btn = document.getElementById('lang-' + l);
         if (btn) btn.classList.toggle('active', l === lang);
