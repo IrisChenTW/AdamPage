@@ -59,11 +59,11 @@ As the **Lego Spaceship** flies higher, it zooms straight into a crackling **Thu
 
 ---
 
-## 🌋 Chapter 8: Volcanoes & Earth's Secret Heat (Geothermal Energy)
-Deep beneath our feet, the center of the Earth is as hot as the sun! This underground heat is called **Geothermal Energy** (*Geo* means Earth, and *Thermal* means heat).
-- In special places like **Taiwan**, underground heat warms up natural **hot springs** where steam and warm water bubble right out of the ground!
-- Engineers can pipe that underground steam up to spin turbines and make clean electricity day and night, rain or shine.
-- **🌟 Adam's Science Secret:** Unlike solar or wind power, Earth's underground heat works 24 hours a day, even on cloudy, windless nights!
+## 🍄🌋⚡ Chapter 8: The Smurfs & The Warm Volcano!
+Before blasting off into deep space, **Captain Minion** and his Minion sidekick land the **Lego Spaceship** at a secret **Smurf Village** next to a warm underground volcano!
+- **Underground Heat**: Deep beneath our feet, the Earth is super hot! This underground heat is called **Geothermal Energy** (*Geo* means Earth, and *Thermal* means heat).
+- **Smurf Steam Power**: The **Smurfs** show Captain Minion how underground heat warms up their mushroom houses and makes clean steam that spins turbines to charge the Lego Spaceship!
+- **🌟 Captain Minion's Science Secret:** Unlike solar or wind power, Earth's underground heat works 24 hours a day, even on cloudy, windless nights!
 
 ---
 
