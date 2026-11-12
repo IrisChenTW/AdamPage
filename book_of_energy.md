@@ -77,8 +77,8 @@ What happens at night when the sun goes down, or on a calm day when the wind sto
 
 ---
 
-## 🧱🚀🪐 Chapter 10: The Lego Spaceship Blasts Off to Saturn!
-Now it is time for **Captain Minion** and his Minion sidekick's biggest mission: flying their giant **Lego Spaceship** past the moon all the way to **Saturn** and its giant icy rings!
+## 👽🪐🧱 Chapter 10: Landing on Saturn & Meeting the Alien!
+Now it is time for **Captain Minion** and his Minion sidekick's biggest mission: flying their giant **Lego Spaceship** past the moon all the way to **Saturn**!
 - **Liftoff Power**: To escape Earth's gravity, the Lego Spaceship rocket engines burn fuel and oxygen, shooting super-hot gas out the bottom at over 7,000 miles per hour. By pushing down, the Lego rocket blasts **UP**!
-- **Deep Space Power**: As the Lego Spaceship travels millions of miles toward Saturn, it uses high-tech **Lego solar wings** and long-lasting **space batteries** to power its computers, cameras, and thrusters.
-- **🌟 Captain Minion's Science Secret:** Once the Lego Spaceship is moving in outer space, there is no air to slow it down—so it can coast through the galaxy for years without using any extra fuel at all!
+- **Meeting the Saturn Alien**: When Captain Minion and his Minion sidekick land on Saturn's sparkling icy rings, a friendly **Saturn Alien** pops out from behind an ice crystal to welcome them and shows them how Saturn's rings glow with cosmic energy!
+- **🌟 Captain Minion's Science Secret:** Once the Lego Spaceship is moving in outer space, there is no air to slow it down—so it can coast all the way to the Alien on Saturn without using any extra fuel at all!
