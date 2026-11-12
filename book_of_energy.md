@@ -11,11 +11,11 @@ Our story begins deep **underwater** at the bottom of the ocean! Using his under
 
 ---
 
-## ☀️ Chapter 2: Power from the Giant Sun (Solar Energy)
+## ☀️🧱🛰️ Chapter 2: Unfolding the Golden Lego Solar Wings!
 High up in the sky, our sun is like a giant glowing ball of fire and nuclear energy. Every single second, it sends enormous waves of light and heat across space.
 - It takes sunlight only **8 minutes** to travel 93 million miles from the sun to Earth!
-- **Solar Panels** are made of special shiny crystals called silicon. When sunlight hits them, it knocks tiny particles loose and creates clean electricity.
-- **🌟 Adam's Science Secret:** In outer space, there are no power cords! That is why satellites and the International Space Station have giant golden solar wings to catch sunlight all day long.
+- **Golden Lego Solar Wings**: **Captain Minion** and his Minion sidekick unfold giant shiny **Lego Solar Panels** made of silicon crystals. When sunlight hits them, it creates clean electricity!
+- **🌟 Captain Minion's Science Secret:** In outer space, there are no power cords! That is why the Lego Spaceship and the International Space Station have giant golden solar wings to catch sunlight all day long.
 
 ---
 
@@ -67,12 +67,11 @@ Before blasting off into deep space, **Captain Minion** and his Minion sidekick 
 
 ---
 
-## 🔋 Chapter 9: Super Batteries & Storing Power
-What happens at night when the sun goes down, or on a calm day when the wind stops blowing? We need a way to save energy for later!
-- **Batteries** store electricity as chemical energy and release it whenever we press the power button.
-- Giant battery stations can save up extra solar power from sunny afternoons and send it to homes at bedtime.
-- Astronauts also wear special backpack batteries on their spacesuits to keep their air, heaters, and radios working while floating in space!
-- **🌟 Adam's Science Secret:** Scientists also store energy by pumping water uphill into a mountain lake when there is extra solar power, then letting it flow back down at night!
+## 🧱💎🔋 Chapter 9: Glowing Blue Lego Power Bricks!
+What happens in dark outer space far away from the sun, or at night when the wind stops blowing? We need a way to save energy for later!
+- **Glowing Blue Lego Bricks**: **Captain Minion** snaps together a tower of special **Glowing Blue Lego Power Bricks**! These super batteries store up all the solar, wind, ocean, and Smurf volcano power as chemical energy and light up in the dark!
+- **Spacesuit Power**: Captain Minion, his Minion sidekick, and Luna the Space Cat also clip Lego battery packs onto their spacesuits to keep their air, heaters, and radios working in space!
+- **🌟 Captain Minion's Science Secret:** Scientists also store energy by pumping water uphill into a mountain lake when there is extra solar power, then letting it flow back down at night!
 
 ---
 
