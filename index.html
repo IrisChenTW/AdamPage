@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🚀 Adam's Awesome Universe!</title>
-  <link rel="stylesheet" href="style.css?v=3" />
+  <link rel="stylesheet" href="style.css?v=4" />
   <style>
-    /* Inline critical styles so images are always neat and inside cards even if CSS caches */
+    /* Critical inline styles so images and energy game always render cleanly */
     .card {
       overflow: hidden;
       text-align: center;
@@ -32,6 +32,68 @@
       object-fit: cover;
       display: block;
     }
+    .energy-box {
+      background: linear-gradient(135deg, #0f172a, #1e3a8a);
+      color: white;
+      padding: 2rem;
+      border-radius: 20px;
+      border: 4px solid #facc15;
+      text-align: center;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.25);
+    }
+    .battery-container {
+      max-width: 500px;
+      margin: 1.5rem auto;
+      background: #1e293b;
+      border: 4px solid #94a3b8;
+      border-radius: 16px;
+      padding: 6px;
+      position: relative;
+    }
+    .battery-fill {
+      height: 44px;
+      width: 0%;
+      background: linear-gradient(90deg, #22c55e, #eab308, #38bdf8);
+      border-radius: 10px;
+      transition: width 0.3s ease;
+    }
+    .battery-text {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-top: 0.5rem;
+      color: #fde047;
+    }
+    .power-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .power-btn {
+      padding: 0.9rem 1.4rem;
+      font-size: 1.2rem;
+      font-weight: 800;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      color: #0f172a;
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
+    }
+    .power-btn:hover {
+      transform: translateY(-3px) scale(1.04);
+    }
+    .btn-solar { background: #fde047; box-shadow: 0 4px 14px rgba(253, 224, 71, 0.4); }
+    .btn-wind { background: #bae6fd; box-shadow: 0 4px 14px rgba(186, 230, 253, 0.4); }
+    .btn-hydro { background: #38bdf8; color: white; box-shadow: 0 4px 14px rgba(56, 189, 248, 0.4); }
+    .rocket-status {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-top: 1rem;
+      min-height: 2.2rem;
+      color: #86efac;
+    }
   </style>
 </head>
 <body class="theme-space">
@@ -45,6 +107,7 @@
       </div>
       <ul class="nav-links">
         <li><a href="#about">About Me</a></li>
+        <li><a href="#energy">⚡ Energy</a></li>
         <li><a href="#game">Mini-Game</a></li>
         <li><a href="#favorites">Favorites</a></li>
         <li><a href="#contact">Say Hi</a></li>
@@ -59,7 +122,7 @@
         <h1>Hi! I'm Adam! 👋</h1>
         <p class="hero-subtitle">I'm <strong>9 years old</strong> — Future Astronaut 👨‍🚀, Lego Builder 🧱, Fast Runner 🏃 &amp; Cat Lover 🐱!</p>
         <div class="hero-actions">
-          <a href="#game" class="btn btn-glow">🎮 Play My Space Game</a>
+          <a href="#energy" class="btn btn-glow">⚡ Explore Energy &amp; Power Game</a>
           <a href="#favorites" class="btn btn-secondary">🌟 See My Favorites</a>
         </div>
       </div>
@@ -89,6 +152,88 @@
             <span class="stat-label">Favorite Planet</span>
             <span class="stat-value">Saturn</span>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="energy" class="section">
+      <h2>⚡ The Awesome Power of Energy!</h2>
+      <p class="section-hint">Energy makes everything move, light up, and grow! It never disappears—it just changes form.</p>
+
+      <div class="energy-box">
+        <h3>🔋 Clean Energy Power Game: Charge Adam's Rocket!</h3>
+        <p>Click the clean energy sources below to charge the battery to 100% and launch the space rocket!</p>
+
+        <div class="battery-container">
+          <div id="battery-fill" class="battery-fill"></div>
+        </div>
+        <div class="battery-text">⚡ Battery Charge: <span id="battery-pct">0</span>%</div>
+
+        <div class="power-buttons">
+          <button class="power-btn btn-solar" onclick="addPower(10, '☀️ Solar Panels caught sunlight!')">☀️ Sunlight (+10%)</button>
+          <button class="power-btn btn-wind" onclick="addPower(15, '💨 Wind Turbine spun in the breeze!')">💨 Wind Turbine (+15%)</button>
+          <button class="power-btn btn-hydro" onclick="addPower(20, '🌊 Underwater Wheel spun with ocean waves!')">🌊 Water Power (+20%)</button>
+        </div>
+
+        <div id="rocket-status" class="rocket-status">Waiting for clean energy...</div>
+        <button id="reset-power-btn" class="btn btn-secondary" style="margin-top: 1rem; display: none;" onclick="resetPower()">🔄 Recharge Another Rocket</button>
+      </div>
+
+      <div class="grid">
+        <div class="card" onclick="burstEmoji(this, '☀️')">
+          <div class="card-pic">
+            <svg viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
+              <rect width="140" height="110" fill="#fef9c3"/>
+              <circle cx="40" cy="32" r="16" fill="#facc15"/>
+              <polygon points="45,95 65,52 120,52 100,95" fill="#1d4ed8" stroke="#93c5fd" stroke-width="3"/>
+              <line x1="72" y1="52" x2="52" y2="95" stroke="#93c5fd" stroke-width="2"/>
+              <line x1="95" y1="52" x2="75" y2="95" stroke="#93c5fd" stroke-width="2"/>
+              <line x1="55" y1="73" x2="110" y2="73" stroke="#93c5fd" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3>☀️ Solar Energy</h3>
+          <p>Solar panels catch light from the sun and turn it into electricity—even on spaceships!</p>
+        </div>
+
+        <div class="card" onclick="burstEmoji(this, '💨')">
+          <div class="card-pic">
+            <svg viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
+              <rect width="140" height="110" fill="#e0f2fe"/>
+              <line x1="70" y1="48" x2="70" y2="100" stroke="#475569" stroke-width="6"/>
+              <circle cx="70" cy="48" r="6" fill="#1e293b"/>
+              <path d="M70 48 L70 12 L78 30 Z" fill="#f8fafc" stroke="#64748b" stroke-width="2"/>
+              <path d="M70 48 L102 68 L82 68 Z" fill="#f8fafc" stroke="#64748b" stroke-width="2"/>
+              <path d="M70 48 L38 68 L58 68 Z" fill="#f8fafc" stroke="#64748b" stroke-width="2"/>
+            </svg>
+          </div>
+          <h3>💨 Wind Energy</h3>
+          <p>Moving air spins giant wind turbine blades to make clean power for homes and schools!</p>
+        </div>
+
+        <div class="card" onclick="burstEmoji(this, '🌊')">
+          <div class="card-pic">
+            <svg viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
+              <rect width="140" height="110" fill="#cffafe"/>
+              <path d="M0 70 Q35 55 70 70 T140 70 L140 110 L0 110 Z" fill="#0284c7"/>
+              <circle cx="70" cy="55" r="24" fill="none" stroke="#0369a1" stroke-width="6"/>
+              <line x1="70" y1="31" x2="70" y2="79" stroke="#0369a1" stroke-width="4"/>
+              <line x1="46" y1="55" x2="94" y2="55" stroke="#0369a1" stroke-width="4"/>
+              <circle cx="70" cy="55" r="7" fill="#facc15"/>
+            </svg>
+          </div>
+          <h3>🌊 Water (Hydro) Energy</h3>
+          <p>Rushing rivers and ocean waves push water turbines to generate electricity!</p>
+        </div>
+
+        <div class="card" onclick="burstEmoji(this, '⚡')">
+          <div class="card-pic">
+            <svg viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
+              <rect width="140" height="110" fill="#dcfce7"/>
+              <polygon points="78,12 42,60 68,60 58,98 98,48 72,48" fill="#eab308" stroke="#ca8a04" stroke-width="3"/>
+            </svg>
+          </div>
+          <h3>🏃 Food &amp; Motion Energy</h3>
+          <p>Eating food like pizza gives your body stored energy so you can run fast and play sports!</p>
         </div>
       </div>
     </section>
@@ -355,7 +500,30 @@
   <script>
     let score = 0;
     let highFives = 10;
+    let powerLevel = 0;
     const emojis = ['🍕', '🐱', '🧱', '🚀', '🪐', '🍦', '⭐', '🍄'];
+
+    function addPower(amount, message) {
+      if (powerLevel >= 100) return;
+      powerLevel = Math.min(100, powerLevel + amount);
+      document.getElementById('battery-fill').style.width = powerLevel + '%';
+      document.getElementById('battery-pct').textContent = powerLevel;
+      const status = document.getElementById('rocket-status');
+      if (powerLevel >= 100) {
+        status.textContent = '🚀 BLAST OFF! 100% Clean Energy! Adam\'s Rocket launched to Saturn! 🪐✨';
+        document.getElementById('reset-power-btn').style.display = 'inline-block';
+      } else {
+        status.textContent = message + ' (' + powerLevel + '% charged)';
+      }
+    }
+
+    function resetPower() {
+      powerLevel = 0;
+      document.getElementById('battery-fill').style.width = '0%';
+      document.getElementById('battery-pct').textContent = '0';
+      document.getElementById('rocket-status').textContent = 'Ready to charge the next rocket!';
+      document.getElementById('reset-power-btn').style.display = 'none';
+    }
 
     function scorePoint() {
       score++;
