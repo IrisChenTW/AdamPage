@@ -502,24 +502,51 @@
       border-color: #fde047;
       transform: scale(1.06);
     }
+    .lang-buttons {
+      display: flex;
+      gap: 0.45rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .lang-btn {
+      padding: 0.45rem 0.85rem;
+      font-size: 1rem;
+      font-weight: 800;
+      border-radius: 999px;
+      border: 2px solid #facc15;
+      background: #1e293b;
+      color: #ffffff;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .lang-btn.active, .lang-btn:hover {
+      background: #facc15;
+      color: #0f172a;
+      transform: scale(1.06);
+    }
   </style>
 </head>
 <body class="theme-space">
   <header>
     <nav class="navbar">
-      <div class="logo">🚀 Adam's Universe</div>
+      <div class="logo" id="nav-logo">🚀 Adam's Universe</div>
+      <div class="lang-buttons">
+        <button onclick="setLang('en')" id="lang-en" class="lang-btn active">🇬🇧 English</button>
+        <button onclick="setLang('de')" id="lang-de" class="lang-btn">🇩🇪 Deutsch</button>
+        <button onclick="setLang('zh')" id="lang-zh" class="lang-btn">🇹🇼 中文</button>
+      </div>
       <div class="theme-buttons">
-        <button onclick="setTheme('theme-space')" class="theme-btn">🪐 Space Blue</button>
-        <button onclick="setTheme('theme-ocean')" class="theme-btn">🌊 Underwater</button>
-        <button onclick="setTheme('theme-spring')" class="theme-btn">🌸 Spring</button>
+        <button onclick="setTheme('theme-space')" class="theme-btn" id="theme-btn-space">🪐 Space Blue</button>
+        <button onclick="setTheme('theme-ocean')" class="theme-btn" id="theme-btn-ocean">🌊 Underwater</button>
+        <button onclick="setTheme('theme-spring')" class="theme-btn" id="theme-btn-spring">🌸 Spring</button>
       </div>
       <ul class="nav-links">
-        <li><a href="#about">About Me</a></li>
-        <li><a href="#movie">🎬 Space Video</a></li>
-        <li><a href="#book">📖 Captain Minion Book</a></li>
-        <li><a href="#energy">⚡ Power Game</a></li>
-        <li><a href="#game">🎮 Games</a></li>
-        <li><a href="#favorites">Favorites</a></li>
+        <li><a href="#about" id="nav-about">About Me</a></li>
+        <li><a href="#movie" id="nav-movie">🎬 Space Video</a></li>
+        <li><a href="#book" id="nav-book">📖 Captain Minion Book</a></li>
+        <li><a href="#energy" id="nav-energy">⚡ Power Game</a></li>
+        <li><a href="#game" id="nav-game">🎮 Games</a></li>
+        <li><a href="#favorites" id="nav-fav">Favorites</a></li>
       </ul>
     </nav>
   </header>
@@ -1681,10 +1708,590 @@
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
         const utter = new SpeechSynthesisUtterance(movieScenes[currentScene].caption);
+        utter.lang = currentLang === 'de' ? 'de-DE' : (currentLang === 'zh' ? 'zh-TW' : 'en-US');
         utter.rate = 0.95;
         utter.pitch = 1.1;
         window.speechSynthesis.speak(utter);
       }
+    }
+
+    // --- 3-Language System: English (en), German (de), Mandarin (zh) ---
+    let currentLang = 'en';
+    const enBookPages = JSON.parse(JSON.stringify(bookPages));
+    const enMovieScenes = JSON.parse(JSON.stringify(movieScenes));
+    const enQuizQuestions = JSON.parse(JSON.stringify(quizQuestions));
+
+    const deBookPages = [
+      {
+        emoji: '🌊💛🧱',
+        title: 'Kapitel 1: Captain Minions geheime Unterwasser-Lego-Basis!',
+        text: 'Unsere Geschichte beginnt tief unter Wasser am Meeresboden! Mit seiner Unterwasser-Superkraft haben der 9-jährige Held Captain Minion (Adam) und sein treuer gelber Minion-Freund ein riesiges, super-starkes Raumschiff komplett aus Lego-Steinen gebaut! Um vom Meeresboden bis in den Weltraum zu starten, brauchen sie die größte Superkraft im Universum: Energie!',
+        secret: '🌟 Captain Minions Wissenschafts-Geheimnis: Energie kann niemals aus dem Nichts entstehen oder verschwinden – sie wechselt nur ihre Form!'
+      },
+      {
+        emoji: '☀️🧱🛰️',
+        title: 'Kapitel 2: Die goldenen Lego-Solarflügel entfalten!',
+        text: 'Hoch am Himmel ist unsere Sonne wie ein riesiger leuchtender Feuerball. Sonnenlicht braucht nur 8 Minuten bis zur Erde! Captain Minion und sein Minion-Freund klappen riesige goldene Lego-Solarflügel aus, die das Sonnenlicht einfangen und direkt in sauberen Strom verwandeln!',
+        secret: '🌟 Captain Minions Wissenschafts-Geheimnis: Im Weltraum gibt es keine Steckdosen! Deshalb nutzen Raumschiffe goldene Solarflügel für Sonnenenergie!'
+      },
+      {
+        emoji: '💨🧱🚁',
+        title: 'Kapitel 3: Der riesige Lego-Windpropeller am Himmel!',
+        text: 'Sobald das Lego-Raumschiff aus dem Ozean in den Himmel schießt, drücken Captain Minion und sein Minion-Freund einen roten Lego-Knopf und fahren einen riesigen Windpropeller aus! Hoch in den Wolken dreht der starke Wind die Propellerblätter und lädt das Raumschiff mit sauberer Windkraft auf!',
+        secret: '🌟 Captain Minions Wissenschafts-Geheimnis: Je höher dein Windpropeller in den Himmel steigt, desto stärker und schneller weht der Wind!'
+      },
+      {
+        emoji: '🦈🌊🧱',
+        title: 'Kapitel 4: Flucht vor dem Riesenhai mit Meeresenergie!',
+        text: 'Plötzlich entdeckt tief unter Wasser ein riesiger hungriger Hai Captain Minion und jagt sie! Blitzschnell steuert Captain Minion das Lego-Raumschiff in eine starke Meeresströmung! Das rauschende Wasser dreht die Hydro-Turbinen, erzeugt gewaltige Wasser-Energie und lässt sie schneller als der Hai davonsausen!',
+        secret: '🌟 Captain Minions Wissenschafts-Geheimnis: Weil Wasser 800-mal dichter ist als Luft, haben Meeresströmungen genug Wasserkraft, um jedem Hai zu entkommen!'
+      },
+      {
+        emoji: '🍕💛🚀',
+        title: 'Kapitel 5: Captain Minions Super-Weltraum-Pizza-Treibstoff!',
+        text: 'Nach der Flucht vor dem Hai bekommen Captain Minion und sein Minion-Freund großen Hunger! Sie backen eine heiße, käsige Super-Pizza im Lego-Raumschiff-Ofen! Pizza steckt voller gespeicherter Energie, die ihre Muskeln mit Bewegungsenergie auflädt, damit sie schnell rennen und das Schiff steuern können!',
+        secret: '🌟 Captain Minions Wissenschafts-Geheimnis: Selbst wenn Captain Minion eine Schlümpfe-Geschichte liest, verbraucht sein Gehirn 20 % seiner Pizza-Energie nur zum Denken!'
+      },
+      {
+        emoji: '🐱🌙👨‍🚀',
+        title: 'Kapitel 6: Luna, die Schwerelosigkeits-Weltraumkatze!',
+        text: 'An Bord des Lego-Raumschiffs lebt Luna, die Weltraumkatze mit ihrem kleinen Astronautenhelm! Luna macht am sonnigen Fenster ein warmes Nickerchen, um Energie zu sammeln. Dann – ZACK! – macht Luna coole Rückwärtssaltos in der Schwerelosigkeit quer durch die Kabine, während der Minion jubelt!',
+        secret: '🌟 Captain Minions Wissenschafts-Geheimnis: Lunas Hinterbeine funktionieren wie Sprungfedern und speichern elastische Energie für ihren Rückwärtssalto!'
+      },
+      {
+        emoji: '🛡️⚡💛',
+        title: 'Kapitel 7: Der leuchtende Elektro-Schild im Gewittersturm!',
+        text: 'Als das Lego-Raumschiff höher fliegt, saust es in eine blitzende Gewitterwolke! Als ein riesiger Blitz auf das Schiff zuschießt, drückt der Minion den blauen Knopf und aktiviert ein leuchtendes elektrisches Schutzschild, an dem die Blitze wie Tischtennisbälle abprallen!',
+        secret: '🌟 Captain Minions Wissenschafts-Geheimnis: Ein einziger Blitz ist fünfmal heißer als die Sonnenoberfläche und hat genug Strom, um 100.000 Brotscheiben zu toasten!'
+      },
+      {
+        emoji: '🍄🌋⚡',
+        title: 'Kapitel 8: Die Schlümpfe & der warme Vulkan!',
+        text: 'Vor dem Flug ins tiefe Weltall landen Captain Minion und sein Minion-Freund in einem geheimen Schlumpfdorf neben einem warmen Vulkan! Die Schlümpfe zeigen ihnen, wie die Erdwärme tief unter unseren Füßen ihre Pilzhäuser wärmt und Dampf erzeugt, um das Raumschiff aufzuladen!',
+        secret: '🌟 Captain Minions Wissenschafts-Geheimnis: Anders als Sonnen- oder Windkraft funktioniert die unterirdische Vulkanwärme der Erde 24 Stunden am Tag!'
+      },
+      {
+        emoji: '🧱💎🔋',
+        title: 'Kapitel 9: Leuchtende blaue Lego-Power-Steine!',
+        text: 'Was passiert im dunklen Weltraum weit weg von der Sonne? Captain Minion baut einen Turm aus leuchtenden blauen Lego-Power-Steinen! Diese Super-Batterien speichern den gesamten Sonnen-, Wind-, Wasser- und Vulkanstrom und leuchten im Dunkeln bis zum Saturn!',
+        secret: '🌟 Captain Minions Wissenschafts-Geheimnis: Ingenieure auf der Erde nutzen auch „Wasserbatterien“, indem sie tagsüber Wasser auf einen Berg pumpen!'
+      },
+      {
+        emoji: '👽🪐🧱',
+        title: 'Kapitel 10: Landung auf dem Saturn & Treffen mit dem Alien!',
+        text: 'Jetzt startet die größte Mission: der Flug mit dem riesigen Lego-Raumschiff bis zum Saturn! Als sie endlich auf den glitzernden Eisringen des Saturn landen, hüpft ein freundliches Saturn-Alien hervor, begrüßt sie und teilt kosmische Ring-Energie!',
+        secret: '🌟 Captain Minions Wissenschafts-Geheimnis: Im Weltraum gibt es keine Luft, die bremst – deshalb gleitet das Lego-Raumschiff fast ohne Treibstoff bis zum Saturn!'
+      }
+    ];
+
+    const zhBookPages = [
+      {
+        emoji: '🌊💛🧱',
+        title: '第 1 章：小小兵隊長（Captain Minion）的深海秘密樂高基地！',
+        text: '我們的故事從深深的海底開始！9 歲的英雄小小兵隊長（Adam）擁有在水中呼吸的超能力，他和忠實的黃色小小兵夥伴在海底秘密基地裡，用樂高積木打造了一艘巨大又堅固的樂高太空船！為了從海底發射升空飛向宇宙，他們必須收集全宇宙最強大的超能力：能量！',
+        secret: '🌟 小小兵隊長的科學秘密：能量永遠不會憑空產生或消失——它只是像換衣服一樣，從一種形式變成另一種形式！'
+      },
+      {
+        emoji: '☀️🧱🛰️',
+        title: '第 2 章：展開金色樂高太陽能翅膀！',
+        text: '高高掛在天空的太陽就像一顆巨大的發光火球。陽光只需要 8 分鐘就能傳到地球！小小兵隊長和小小兵夥伴在太空船上展開巨大的金色樂高太陽能翅膀，捕捉陽光並直接轉換成乾淨的電力！',
+        secret: '🌟 小小兵隊長的科學秘密：外太空裡沒有插座和電線！所以樂高太空船和太空站都用巨大的金色太陽能板來收集陽光電力！'
+      },
+      {
+        emoji: '💨🧱🚁',
+        title: '第 3 章：天空中的巨型樂高風力螺旋槳！',
+        text: '當樂高太空船衝出海洋飛上天空時，小小兵隊長按下紅色樂高按鈕，彈出一個巨型風力螺旋槳！在高高的雲層中，強風吹動巨大的螺旋槳葉片不斷旋轉，為太空船充滿乾淨的風力電能！',
+        secret: '🌟 小小兵隊長的科學秘密：你的巨型風力螺旋槳飛得越高，天空中的風就越強、轉得越快！'
+      },
+      {
+        emoji: '🦈🌊🧱',
+        title: '第 4 章：用海洋水力能量甩開大白鯊！',
+        text: '突然在深海裡，一隻肚子餓的巨大鯊魚發現了小小兵隊長並追了上來！小小兵隊長機智地把樂高太空船開進強勁的海底洋流！奔騰的海水轉動渦輪機，產生強大的水力能量，讓推進器加速衝刺，比大鯊魚還要快！',
+        secret: '🌟 小小兵隊長的科學秘密：因為水的密度是空氣的 800 倍，奔流的海底洋流和海浪擁有足夠的水力能量，能甩開任何大鯊魚！'
+      },
+      {
+        emoji: '🍕💛🚀',
+        title: '第 5 章：小小兵隊長的超級太空披薩燃料！',
+        text: '甩開鯊魚、飛上雲端後，小小兵隊長和小小兵夥伴肚子超餓！他們在樂高太空船烤箱裡烤了一個熱騰騰、充滿起司的超級披薩！披薩富含來自陽光的化學能，吃下後能為肌肉補充動能，讓他們跑得飛快、駕駛太空船！',
+        secret: '🌟 小小兵隊長的科學秘密：就算小小兵隊長坐在駕駛座看藍色小精靈故事書，他的大腦光靠思考就會用掉身體 20% 的披薩能量喔！'
+      },
+      {
+        emoji: '🐱🌙👨‍🚀',
+        title: '第 6 章：無重力太空貓露娜（Luna）！',
+        text: '樂高太空船上住著戴著小小太空頭盔的無重力太空貓露娜（Luna）！露娜在陽光灑落的太空船窗邊睡了暖呼呼的午覺，儲存滿滿的能量。接著——咻！——露娜把儲存的位能變成飛快的動能，在船艙裡做出超酷的無重力後空翻！',
+        secret: '🌟 小小兵隊長的科學秘密：露娜的後腿就像壓縮的彈簧一樣，在起跳做出無重力後空翻前會先儲存彈性位能！'
+      },
+      {
+        emoji: '🛡️⚡💛',
+        title: '第 7 章：雷暴中的發光電力防護罩！',
+        text: '當樂高太空船越飛越高，衝進了劈啪作響的雷電雲層！成千上萬的電子在雲層中奔跑！就在巨大閃電劈向太空船的瞬間，小小兵夥伴按下藍色按鈕，啟動發光電力防護罩，把閃電像乒乓球一樣彈開！',
+        secret: '🌟 小小兵隊長的科學秘密：一道閃電的溫度比太陽表面還熱五倍，擁有的電力足夠烤熟十萬片吐司！'
+      },
+      {
+        emoji: '🍄🌋⚡',
+        title: '第 8 章：藍色小精靈與溫暖的火山！',
+        text: '在飛向深太空前，小小兵隊長把樂高太空船降落在溫暖火山旁的秘密藍色小精靈村莊！藍色小精靈向他們展示腳底深處的地球秘密熱能（地熱能），不但能溫暖蘑菇屋，還能產生蒸氣推動渦輪為太空船充電！',
+        secret: '🌟 小小兵隊長的科學秘密：跟太陽能或風力不同，地球地底下的火山地熱能一天 24 小時都不會停，連陰天沒風的夜晚也有電！'
+      },
+      {
+        emoji: '🧱💎🔋',
+        title: '第 9 章：發光藍色樂高能量積木！',
+        text: '飛到遠離太陽的黑暗外太空時該怎麼辦呢？小小兵隊長拼起一座特別的「發光藍色樂高能量積木塔」！這些超級電池把太陽能、風能、海洋水力和藍色小精靈火山電力通通儲存起來，在黑暗中發光，一路供電飛往土星！',
+        secret: '🌟 小小兵隊長的科學秘密：地球上的工程師也會用「水電池」儲存能量，在太陽大時把水抽到高山湖泊，晚上再放水下來發電！'
+      },
+      {
+        emoji: '👽🪐🧱',
+        title: '第 10 章：降落土星與遇見外星人！',
+        text: '現在到了小小兵隊長最大的任務：駕駛巨型樂高太空船一路飛向土星！當他們終於降落在土星閃亮亮的巨大冰環上時，一個發光的友善土星外星人跳出來迎接他們，一起分享宇宙光環能量！',
+        secret: '🌟 小小兵隊長的科學秘密：外太空沒有空氣阻力讓樂高太空船變慢，所以一旦加速後，幾乎不用燃料就能一路滑行到土星找外星人！'
+      }
+    ];
+
+    const deMovieScenes = [
+      {
+        title: '🎬 Szene 1 von 5: Unterwasser-Basis & Riesenhai-Jagd!',
+        caption: '🌊 Tief unter Wasser nutzen Captain Minion und sein Minion-Freund Meeresenergie, um mit ihrem Lego-Raumschiff dem hungrigen Hai zu entkommen!',
+        bg1: '#0284c7', bg2: '#0f172a'
+      },
+      {
+        title: '🎬 Szene 2 von 5: Goldene Solarflügel & Windpropeller!',
+        caption: '☀️💨 Ab in den sonnigen Himmel! Das Lego-Raumschiff klappt goldene Solarflügel aus und dreht seinen riesigen Windpropeller in den Wolken!',
+        bg1: '#38bdf8', bg2: '#1d4ed8'
+      },
+      {
+        title: '🎬 Szene 3 von 5: Weltraum-Pizza & Lunas Rückwärtssaltos!',
+        caption: '🐱🍕 In der Kabine backt Captain Minion heiße Pizza, während Weltraumkatze Luna coole Rückwärtssaltos in der Schwerelosigkeit macht!',
+        bg1: '#312e81', bg2: '#090d16'
+      },
+      {
+        title: '🎬 Szene 4 von 5: Schlumpf-Vulkan & Elektro-Blitzschild!',
+        caption: '🍄⚡ Nach dem Aufladen am warmen Vulkan der Schlümpfe lässt das leuchtende Elektroschild Gewitterblitze wie Tischtennisbälle abprallen!',
+        bg1: '#1e1b4b', bg2: '#020617'
+      },
+      {
+        title: '🎬 Szene 5 von 5: Landung auf dem Saturn & das Alien!',
+        caption: '🪐👽 Angetrieben von blauen Lego-Power-Steinen landet Captain Minion auf den Saturnringen und gibt dem freundlichen Saturn-Alien ein High-Five!',
+        bg1: '#090d16', bg2: '#000000'
+      }
+    ];
+
+    const zhMovieScenes = [
+      {
+        title: '🎬 第 1 幕（共 5 幕）：海底樂高基地與大白鯊追逐戰！',
+        caption: '🌊 在深海裡，小小兵隊長和小小兵夥伴利用海洋水力能量，駕駛樂高太空船極速甩開飢餓的大白鯊！',
+        bg1: '#0284c7', bg2: '#0f172a'
+      },
+      {
+        title: '🎬 第 2 幕（共 5 幕）：金色太陽能翅膀與天空風力螺旋槳！',
+        caption: '☀️💨 衝上陽光燦爛的天空！樂高太空船展開金色太陽能翅膀，並在雲層中轉動巨型風力螺旋槳！',
+        bg1: '#38bdf8', bg2: '#1d4ed8'
+      },
+      {
+        title: '🎬 第 3 幕（共 5 幕）：太空披薩與露娜的無重力後空翻！',
+        caption: '🐱🍕 在船艙裡，小小兵隊長烤著熱騰騰的太空披薩，太空貓露娜（Luna）則開心地做出無重力後空翻！',
+        bg1: '#312e81', bg2: '#090d16'
+      },
+      {
+        title: '🎬 第 4 幕（共 5 幕）：藍色小精靈火山與閃電防護罩！',
+        caption: '🍄⚡ 在藍色小精靈的溫暖火山充滿電後，發光電力防護罩把雷暴閃電像乒乓球一樣統統彈開！',
+        bg1: '#1e1b4b', bg2: '#020617'
+      },
+      {
+        title: '🎬 第 5 幕（共 5 幕）：降落土星光環與遇見外星人！',
+        caption: '🪐👽 靠著發光藍色樂高能量積木，小小兵隊長降落在土星冰環上，和友善的土星外星人開心擊掌！',
+        bg1: '#090d16', bg2: '#000000'
+      }
+    ];
+
+    const deQuizQuestions = [
+      {
+        q: '🪐 Welcher Planet hat riesige glitzernde Eisringe, auf denen Captain Minion das Alien trifft?',
+        options: ['🪐 Saturn', '🔴 Mars', '🪨 Merkur'],
+        answer: 0
+      },
+      {
+        q: '☀️ Was fängt am Lego-Raumschiff Sonnenlicht ein und macht daraus Strom?',
+        options: ['🍕 Käsige Pizza', '🛰️ Goldene Lego-Solarflügel', '🦈 Riesenhai'],
+        answer: 1
+      },
+      {
+        q: '🐱 Welchen coolen Trick macht Weltraumkatze Luna nach ihrem Nickerchen?',
+        options: ['🤸 Rückwärtssaltos in Schwerelosigkeit', '🚗 Bus fahren', '❄️ Schneemann bauen'],
+        answer: 0
+      },
+      {
+        q: '🍄 Wie halten die Schlümpfe ihre Pilzhäuser Tag und Nacht warm?',
+        options: ['🍦 Kaltes Eis', '🌋 Unterirdische Vulkanwärme', '🌧️ Regentropfen'],
+        answer: 1
+      },
+      {
+        q: '🔋 Wie speichert Captain Minion Strom für den dunklen Weltraum?',
+        options: ['🧱💎 Leuchtende blaue Lego-Power-Steine', '🎈 Luftballons', '🧦 Kuschelsocken'],
+        answer: 0
+      }
+    ];
+
+    const zhQuizQuestions = [
+      {
+        q: '🪐 哪一顆行星擁有閃亮的巨大冰環，而且小小兵隊長在那裡遇見外星人？',
+        options: ['🪐 土星 (Saturn)', '🔴 火星 (Mars)', '🪨 水星 (Mercury)'],
+        answer: 0
+      },
+      {
+        q: '☀️ 樂高太空船上的什麼裝備可以捕捉陽光並轉換成電力？',
+        options: ['🍕 起司披薩', '🛰️ 金色樂高太陽能翅膀', '🦈 大白鯊'],
+        answer: 1
+      },
+      {
+        q: '🐱 太空貓露娜（Luna）睡飽午覺後會做什麼超酷特技？',
+        options: ['🤸 無重力後空翻', '🚗 開公車', '❄️ 堆雪人'],
+        answer: 0
+      },
+      {
+        q: '🍄 藍色小精靈用什麼能量讓蘑菇屋日夜都溫暖？',
+        options: ['🍦 冰涼冰淇淋', '🌋 地底火山熱能（地熱）', '🌧️ 小雨滴'],
+        answer: 1
+      },
+      {
+        q: '🔋 小小兵隊長用什麼裝備儲存電力，飛過黑暗的外太空？',
+        options: ['🧱💎 發光藍色樂高能量積木', '🎈 派對氣球', '🧦 毛毛襪'],
+        answer: 0
+      }
+    ];
+
+    const uiTranslations = {
+      en: {
+        logo: "🚀 Adam's Universe",
+        themes: ["🪐 Space Blue", "🌊 Underwater", "🌸 Spring"],
+        nav: ["About Me", "🎬 Space Video", "📖 Captain Minion Book", "⚡ Power Game", "🎮 Games", "Favorites"],
+        heroBadge: "✨ Official Website ✨",
+        heroTitle: "Hi! I'm Adam (Captain Minion)! 👋💛",
+        heroSub: "I'm <strong>9 years old</strong> — Future Astronaut 👨‍🚀, Lego Builder 🧱, Fast Runner 🏃 &amp; Author of the <strong>Captain Minion</strong> Book 📖!",
+        heroBtns: ["🎬 Watch My Space Video!", "📖 Read \"Captain Minion\" Book", "🎮 Play 8 Space Games"],
+        movieH2: "🎬 Captain Minion: The Animated Space Video!",
+        movieHint: "Watch Captain Minion, his Minion sidekick, and Luna the Space Cat blast off from the underwater Lego base all the way to Saturn!",
+        scenePills: ["1️⃣ 🦈 Ocean & Shark", "2️⃣ ☀️💨 Solar & Wind", "3️⃣ 🐱🍕 Luna Backflips", "4️⃣ 🍄⚡ Smurfs & Shield", "5️⃣ 🪐👽 Saturn Alien"],
+        movieBtns: ["⏸️ Pause Video", "⏭️ Next Scene", "🔊 Read Scene Out Loud"],
+        aboutH2: "🌟 About Adam",
+        statLabels: ["Age", "Superpower", "Dream Job", "Favorite Planet"],
+        statValues: ["9 Years Old", "Going Underwater", "Astronaut", "Saturn"],
+        bookH2: "📖 Captain Minion (10-Chapter Book!)",
+        bookHint: "Written by Author Adam (Captain Minion) • Click any chapter (1–10) or Next & Previous Chapter!",
+        bookBtns: ["⬅️ Previous Chapter", "Next Chapter ➡️"],
+        energyH2: "⚡ The Awesome Power of Energy!",
+        energyHint: "Energy makes everything move, light up, and grow! It never disappears—it just changes form.",
+        energyGameH3: "🔋 Clean Energy Power Game: Charge Adam's Rocket!",
+        energyGameP: "Click the clean energy sources below to charge the battery to 100% and launch the space rocket!",
+        powerBtns: ["☀️ Sunlight (+10%)", "💨 Wind Turbine (+15%)", "🌊 Water Power (+20%)"],
+        energyCards: [
+          ["☀️ Solar Energy", "Solar panels catch light from the sun and turn it into electricity—even on spaceships!"],
+          ["💨 Wind Energy", "Moving air spins giant wind turbine blades to make clean power for homes and schools!"],
+          ["🌊 Water (Hydro) Energy", "Rushing rivers and ocean waves push water turbines to generate electricity!"],
+          ["🏃 Food & Motion Energy", "Eating food like pizza gives your body stored energy so you can run fast and play sports!"]
+        ],
+        gameH2: "🎮 Adam's Game Arcade!",
+        g1Title: "🎯 Game 1: Space Clicker!",
+        g1Desc: "Click the floating targets to collect Space Points for Adam's rocket to Saturn!",
+        arcadeTitles: [
+          "🦈🚀 Game 2: Shark & Pizza Dodge!",
+          "🧠💛 Game 3: Captain Minion Memory Match!",
+          "👽🪐 Game 4: Saturn Crater Pop!",
+          "🐱👽 Game 5: Luna vs. Alien Tic-Tac-Toe!",
+          "🧱🎨 Game 6: Lego Pixel Builder!",
+          "🪐🧠 Game 7: Captain Minion's Space Quiz!",
+          "🐱🍕 Game 8: Luna's Zero-Gravity Backflip!"
+        ],
+        arcadeDescs: [
+          "Move your Lego Spaceship left & right! Catch 🍕💎 (+10 pts) and dodge the 🦈 Shark!",
+          "Flip two cards to find matching pairs of Luna, Minions, Pizza, Saturn & Aliens!",
+          "Click the 👽 Aliens & 💛 Minions popping out of Saturn's craters (+10)! Don't click the 🦈 Shark!",
+          "You are 🐱 Luna the Space Cat! Get 3 in a row before the 👽 Saturn Alien does!",
+          "Pick a glowing Lego brick color and click the squares to build your own Lego art!",
+          "Test your superpower knowledge about Saturn, Space Energy, Luna the Cat & Captain Minion!",
+          "Feed Luna the Space Cat pizza & ice cream to charge her energy, then make her do Zero-Gravity Backflips!"
+        ],
+        favH2: "💙 All My Favorite Things",
+        favHint: "Click any card for a fun surprise!",
+        favCards: [
+          ["🧱 Building with Lego", "I love building cool creations and playing with Lego!"],
+          ["🐱 Cute Cats", "Cats are my absolute favorite animals in the whole world!"],
+          ["🍕 Delicious Pizza", "My number one favorite food is hot cheesy pizza!"],
+          ["🍄 The Smurfs & Stories", "My favorite cartoon characters and bedtime stories are the Smurfs!"],
+          ["💛 Minions", "My favorite funny movie characters are the Minions!"],
+          ["🏃 Running & Sports", "Running is my number one favorite sport at school!"],
+          ["🌊 Underwater Superpower", "Going deep underwater to swim and explore the ocean!"],
+          ["🚀 Outer Space", "My dream adventure is blasting off into outer space!"],
+          ["👨‍🚀 Future Astronaut", "When I grow up, I want to be an astronaut exploring the stars!"],
+          ["🪐 Saturn", "Saturn is my favorite planet with its giant icy rings!"],
+          ["🍦 Ice Cream", "My favorite sweet dessert is cold, yummy ice cream!"],
+          ["🇹🇼 Taiwan", "Special place: Taiwan and the famous Taipei 101 tower!"],
+          ["🌸 Spring Season", "Spring is my favorite season with flowers and warm days!"],
+          ["☀️ Summer Holiday", "My favorite holiday is summer break for fun adventures!"],
+          ["🏠 Friends at Home", "Playing games with my friends at my home!"]
+        ],
+        hfH2: "🎉 High-Five Adam!",
+        hfP: "Click the button to send Adam a virtual High-Five!",
+        footer: "🚀 Built by Adam (Age 9) • Welcome to Adam's Universe!"
+      },
+      de: {
+        logo: "🚀 Adams Universum",
+        themes: ["🪐 Weltraum-Blau", "🌊 Unterwasser", "🌸 Frühling"],
+        nav: ["Über mich", "🎬 Weltraum-Video", "📖 Captain Minion Buch", "⚡ Energie-Spiel", "🎮 Spiele", "Favoriten"],
+        heroBadge: "✨ Offizielle Webseite ✨",
+        heroTitle: "Hallo! Ich bin Adam (Captain Minion)! 👋💛",
+        heroSub: "Ich bin <strong>9 Jahre alt</strong> — Zukünftiger Astronaut 👨‍🚀, Lego-Baumeister 🧱, Schneller Läufer 🏃 &amp; Autor des <strong>Captain Minion</strong> Buchs 📖!",
+        heroBtns: ["🎬 Mein Weltraum-Video ansehen!", "📖 „Captain Minion“ Buch lesen", "🎮 8 Weltraum-Spiele spielen"],
+        movieH2: "🎬 Captain Minion: Das animierte Weltraum-Video!",
+        movieHint: "Sieh zu, wie Captain Minion, sein Minion-Freund und Weltraumkatze Luna von der Unterwasser-Lego-Basis bis zum Saturn starten!",
+        scenePills: ["1️⃣ 🦈 Ozean & Hai", "2️⃣ ☀️💨 Sonne & Wind", "3️⃣ 🐱🍕 Lunas Saltos", "4️⃣ 🍄⚡ Schlümpfe & Schild", "5️⃣ 🪐👽 Saturn-Alien"],
+        movieBtns: ["⏸️ Video pausieren", "⏭️ Nächste Szene", "🔊 Szene vorlesen"],
+        aboutH2: "🌟 Über Adam",
+        statLabels: ["Alter", "Superkraft", "Traumberuf", "Lieblingsplanet"],
+        statValues: ["9 Jahre alt", "Unterwasser tauchen", "Astronaut", "Saturn"],
+        bookH2: "📖 Captain Minion (Buch mit 10 Kapiteln!)",
+        bookHint: "Geschrieben von Autor Adam (Captain Minion) • Klicke auf ein Kapitel (1–10) oder Weiter & Zurück!",
+        bookBtns: ["⬅️ Vorheriges Kapitel", "Nächstes Kapitel ➡️"],
+        energyH2: "⚡ Die fantastische Kraft der Energie!",
+        energyHint: "Energie lässt alles sich bewegen, leuchten und wachsen! Sie verschwindet nie – sie verwandelt sich nur.",
+        energyGameH3: "🔋 Saubere-Energie-Spiel: Lade Adams Rakete auf!",
+        energyGameP: "Klicke auf die sauberen Energiequellen, um die Batterie auf 100 % zu laden und die Rakete zu starten!",
+        powerBtns: ["☀️ Sonnenlicht (+10%)", "💨 Windrad (+15%)", "🌊 Wasserkraft (+20%)"],
+        energyCards: [
+          ["☀️ Sonnenenergie", "Solarmodule fangen Sonnenlicht ein und machen daraus Strom – sogar auf Raumschiffen!"],
+          ["💨 Windenergie", "Wind dreht riesige Windräder, um sauberen Strom für Häuser und Schulen zu erzeugen!"],
+          ["🌊 Wasser-Energie", "Schnelle Flüsse und Meereswellen treiben Wasserturbinen an und erzeugen Strom!"],
+          ["🏃 Essens- & Bewegungsenergie", "Essen wie Pizza gibt deinem Körper Energie, damit du schnell rennen und Sport machen kannst!"]
+        ],
+        gameH2: "🎮 Adams Spiele-Arkade!",
+        g1Title: "🎯 Spiel 1: Weltraum-Klicker!",
+        g1Desc: "Klicke auf die fliegenden Ziele, um Weltraumpunkte für Adams Rakete zum Saturn zu sammeln!",
+        arcadeTitles: [
+          "🦈🚀 Spiel 2: Hai- & Pizza-Ausweichen!",
+          "🧠💛 Spiel 3: Captain Minion Memory!",
+          "👽🪐 Spiel 4: Saturn-Krater-Pop!",
+          "🐱👽 Spiel 5: Luna gegen Alien Tic-Tac-Toe!",
+          "🧱🎨 Spiel 6: Lego-Pixel-Baumeister!",
+          "🪐🧠 Spiel 7: Captain Minions Weltraum-Quiz!",
+          "🐱🍕 Spiel 8: Lunas Schwerelosigkeits-Salto!"
+        ],
+        arcadeDescs: [
+          "Steuere dein Lego-Raumschiff nach links & rechts! Fange 🍕💎 (+10 Pkt.) und weiche dem 🦈 Hai aus!",
+          "Drehe zwei Karten um und finde passende Paare von Luna, Minions, Pizza, Saturn & Aliens!",
+          "Klicke auf 👽 Aliens & 💛 Minions in den Saturn-Kratern (+10)! Klicke nicht auf den 🦈 Hai!",
+          "Du bist 🐱 Weltraumkatze Luna! Schaffe 3 in einer Reihe vor dem 👽 Saturn-Alien!",
+          "Wähle eine leuchtende Lego-Farbe und klicke auf die Felder, um dein Lego-Kunstwerk zu bauen!",
+          "Teste dein Superwissen über den Saturn, Weltraumenergie, Katze Luna & Captain Minion!",
+          "Füttere Katze Luna mit Pizza & Eis für neue Energie und lass sie Rückwärtssaltos machen!"
+        ],
+        favH2: "💙 Alle meine Lieblingsdinge",
+        favHint: "Klicke auf eine Karte für eine lustige Überraschung!",
+        favCards: [
+          ["🧱 Mit Lego bauen", "Ich liebe es, coole Sachen zu bauen und mit Lego zu spielen!"],
+          ["🐱 Süße Katzen", "Katzen sind meine absoluten Lieblingstiere auf der ganzen Welt!"],
+          ["🍕 Leckere Pizza", "Mein absolutes Lieblingsessen ist heiße Käsepizza!"],
+          ["🍄 Die Schlümpfe & Geschichten", "Meine liebsten Zeichentrickfiguren und Geschichten sind die Schlümpfe!"],
+          ["💛 Minions", "Meine lustigsten Lieblingsfilmfiguren sind die Minions!"],
+          ["🏃 Laufen & Sport", "Laufen ist mein Lieblingssport Nummer eins in der Schule!"],
+          ["🌊 Unterwasser-Superkraft", "Tief unter Wasser tauchen, schwimmen und den Ozean entdecken!"],
+          ["🚀 Weltraum", "Mein Traumabenteuer ist ein Raketenstart in den Weltraum!"],
+          ["👨‍🚀 Zukünftiger Astronaut", "Wenn ich groß bin, möchte ich Astronaut werden und die Sterne erforschen!"],
+          ["🪐 Saturn", "Der Saturn mit seinen riesigen Eisringen ist mein Lieblingsplanet!"],
+          ["🍦 Eiscreme", "Mein süßes Lieblingsdessert ist kaltes, leckeres Eis!"],
+          ["🇹🇼 Taiwan", "Besonderer Ort: Taiwan und der berühmte Turm Taipei 101!"],
+          ["🌸 Frühling", "Der Frühling mit Blumen und warmen Tagen ist meine Lieblingsjahreszeit!"],
+          ["☀️ Sommerferien", "Meine liebsten Ferien sind die Sommerferien voller Abenteuer!"],
+          ["🏠 Freunde zu Hause", "Mit meinen Freunden bei mir zu Hause tolle Spiele spielen!"]
+        ],
+        hfH2: "🎉 Gib Adam ein High-Five!",
+        hfP: "Klicke auf den Knopf, um Adam ein virtuelles High-Five zu schicken!",
+        footer: "🚀 Gebaut von Adam (9 Jahre alt) • Willkommen in Adams Universum!"
+      },
+      zh: {
+        logo: "🚀 Adam 的宇宙天地",
+        themes: ["🪐 太空藍", "🌊 深海世界", "🌸 春天粉櫻"],
+        nav: ["關於我", "🎬 太空動畫影片", "📖 小小兵隊長故事書", "⚡ 能量遊戲", "🎮 遊戲中心", "我的最愛"],
+        heroBadge: "✨ 官方個人網站 ✨",
+        heroTitle: "嗨！我是 Adam（小小兵隊長 Captain Minion）！👋💛",
+        heroSub: "我今年 <strong>9 歲</strong> — 未來的太空人 👨‍🚀、樂高小小建築師 🧱、跑步健將 🏃，也是《<strong>小小兵隊長</strong>》故事書的作者 📖！",
+        heroBtns: ["🎬 觀看我的太空動畫！", "📖 閱讀《小小兵隊長》故事書", "🎮 暢玩 8 款太空遊戲"],
+        movieH2: "🎬 小小兵隊長：太空大冒險動畫影片！",
+        movieHint: "一起觀看小小兵隊長、小小兵夥伴與太空貓露娜（Luna）從海底樂高基地發射飛向土星！",
+        scenePills: ["1️⃣ 🦈 深海與大白鯊", "2️⃣ ☀️💨 太陽能與風力", "3️⃣ 🐱🍕 露娜後空翻", "4️⃣ 🍄⚡ 藍色小精靈與護盾", "5️⃣ 🪐👽 土星外星人"],
+        movieBtns: ["⏸️ 暫停影片", "⏭️ 下一幕", "🔊 朗讀本幕故事"],
+        aboutH2: "🌟 關於 Adam",
+        statLabels: ["年齡", "超能力", "夢想職業", "最愛的行星"],
+        statValues: ["9 歲", "深海潛水超能力", "太空人", "土星 (Saturn)"],
+        bookH2: "📖 《小小兵隊長》（10 章節互動故事書！）",
+        bookHint: "作者：Adam（小小兵隊長）• 點擊任一章節 (1–10) 或切換上/下一章！",
+        bookBtns: ["⬅️ 上一章", "下一章 ➡️"],
+        energyH2: "⚡ 神奇的能量超能力！",
+        energyHint: "能量讓萬物移動、發光與成長！能量永遠不會消失——它只是轉換成不同形式。",
+        energyGameH3: "🔋 乾淨能源充電遊戲：為 Adam 的火箭充滿電！",
+        energyGameP: "點擊下方的乾淨能源按鈕，將電池充到 100% 並發射太空火箭前往土星！",
+        powerBtns: ["☀️ 太陽能 (+10%)", "💨 風力發電 (+15%)", "🌊 水力發電 (+20%)"],
+        energyCards: [
+          ["☀️ 太陽能 (Solar Energy)", "太陽能板可以捕捉陽光並轉換成電力——連外太空的太空船都在用！"],
+          ["💨 風力能 (Wind Energy)", "流動的空氣推動巨大的風車葉片，為家庭與學校創造乾淨電力！"],
+          ["🌊 水力能 (Hydro Energy)", "奔流的河水與海浪推動水力渦輪機，產生源源不絕的電力！"],
+          ["🏃 食物與動能 (Food & Motion)", "吃下披薩等美食能為身體補充能量，讓你跑得飛快、開心運動！"]
+        ],
+        gameH2: "🎮 Adam 的太空遊戲中心！",
+        g1Title: "🎯 遊戲 1：太空點擊大挑戰！",
+        g1Desc: "點擊飄浮的太空寶物，為 Adam 飛往土星的火箭收集積分！",
+        arcadeTitles: [
+          "🦈🚀 遊戲 2：閃避大白鯊接披薩！",
+          "🧠💛 遊戲 3：小小兵隊長記憶翻牌！",
+          "👽🪐 遊戲 4：土星隕石坑打地鼠！",
+          "🐱👽 遊戲 5：露娜大戰外星人井字遊戲！",
+          "🧱🎨 遊戲 6：樂高像素創意畫板！",
+          "🪐🧠 遊戲 7：小小兵隊長太空問答挑戰！",
+          "🐱🍕 遊戲 8：露娜的無重力後空翻！"
+        ],
+        arcadeDescs: [
+          "左右移動你的樂高太空船！接住 🍕💎 (+10 分)，小心閃開 🦈 大白鯊！",
+          "翻開兩張卡片，找出露娜、小小兵、披薩、土星和外星人的配對！",
+          "點擊從土星隕石坑跳出來的 👽 外星人和 💛 小小兵 (+10 分)！別點到 🦈 大白鯊！",
+          "你是 🐱 太空貓露娜！搶在 👽 土星外星人之前連成 3 個一線！",
+          "挑選發光的樂高積木顏色，點擊方格拼出你專屬的樂高像素作品！",
+          "考考你對土星、太空能源、太空貓露娜與小小兵隊長的超級知識！",
+          "餵太空貓露娜吃披薩和冰淇淋補充能量，再讓她做出超酷的無重力後空翻！"
+        ],
+        favH2: "💙 我最喜歡的事物",
+        favHint: "點擊任何一張卡片，會有驚喜小動畫喔！",
+        favCards: [
+          ["🧱 拼樂高積木", "我超喜歡用樂高積木拼出各種酷炫的創作！"],
+          ["🐱 可愛的貓咪", "貓咪是全世界我最喜歡的小動物！"],
+          ["🍕 美味披薩", "我最愛吃的第一名美食就是熱騰騰的起司披薩！"],
+          ["🍄 藍色小精靈與故事", "我最喜歡的卡通人物和床邊故事就是藍色小精靈！"],
+          ["💛 小小兵 (Minions)", "我最喜歡的搞笑電影角色就是黃色小小兵！"],
+          ["🏃 跑步與運動", "跑步是我在學校最喜歡的第一名運動！"],
+          ["🌊 深海潛水超能力", "潛入深深的海底游泳、探索神祕的海洋世界！"],
+          ["🚀 外太空探險", "我夢想的冒險就是搭乘火箭飛向外太空！"],
+          ["👨‍🚀 未來的太空人", "長大後我想當一名探索星空的太空人！"],
+          ["🪐 土星 (Saturn)", "擁有巨大閃亮冰環的土星是我最愛的行星！"],
+          ["🍦 冰淇淋", "我最喜歡的甜點就是冰冰涼涼的美味冰淇淋！"],
+          ["🇹🇼 台灣 (Taiwan)", "特別的地方：台灣與著名的台北 101 大樓！"],
+          ["🌸 春天季節", "百花盛開、溫暖舒適的春天是我最愛的季節！"],
+          ["☀️ 快樂暑假", "我最喜歡的假期是可以盡情冒險的暑假！"],
+          ["🏠 與朋友在家玩", "邀請好朋友來我家一起玩遊戲最開心！"]
+        ],
+        hfH2: "🎉 跟 Adam 擊掌 High-Five！",
+        hfP: "點擊按鈕，送給 Adam 一個熱情的空中擊掌！",
+        footer: "🚀 由 9 歲的 Adam 親手打造 • 歡迎來到 Adam 的宇宙天地！"
+      }
+    };
+
+    function setLang(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : lang;
+      ['en', 'de', 'zh'].forEach(l => {
+        const btn = document.getElementById('lang-' + l);
+        if (btn) btn.classList.toggle('active', l === lang);
+      });
+
+      const t = uiTranslations[lang];
+      document.getElementById('nav-logo').textContent = t.logo;
+      document.getElementById('theme-btn-space').textContent = t.themes[0];
+      document.getElementById('theme-btn-ocean').textContent = t.themes[1];
+      document.getElementById('theme-btn-spring').textContent = t.themes[2];
+
+      const navIds = ['nav-about', 'nav-movie', 'nav-book', 'nav-energy', 'nav-game', 'nav-fav'];
+      navIds.forEach((id, i) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = t.nav[i];
+      });
+
+      document.querySelector('.hero .badge').textContent = t.heroBadge;
+      document.querySelector('.hero h1').textContent = t.heroTitle;
+      document.querySelector('.hero .hero-subtitle').innerHTML = t.heroSub;
+      const heroBtns = document.querySelectorAll('.hero .hero-actions a');
+      heroBtns.forEach((b, i) => { if (t.heroBtns[i]) b.textContent = t.heroBtns[i]; });
+
+      // Movie section
+      document.querySelector('#movie h2').textContent = t.movieH2;
+      document.querySelector('#movie .section-hint').textContent = t.movieHint;
+      const pills = document.querySelectorAll('#movie .scene-pill');
+      pills.forEach((p, i) => { if (t.scenePills[i]) p.textContent = t.scenePills[i]; });
+      const mBtns = document.querySelectorAll('#movie .dodge-controls .ctrl-btn');
+      if (mBtns.length >= 3) {
+        mBtns[0].textContent = moviePlaying ? t.movieBtns[0] : '▶️ Play';
+        mBtns[1].textContent = t.movieBtns[1];
+        mBtns[2].textContent = t.movieBtns[2];
+      }
+
+      const activeMovieList = lang === 'de' ? deMovieScenes : (lang === 'zh' ? zhMovieScenes : enMovieScenes);
+      for (let i = 0; i < movieScenes.length; i++) {
+        movieScenes[i] = activeMovieList[i];
+      }
+      setMovieScene(currentScene);
+
+      // About section
+      document.querySelector('#about h2').textContent = t.aboutH2;
+      const sLabels = document.querySelectorAll('#about .stat-label');
+      const sValues = document.querySelectorAll('#about .stat-value');
+      sLabels.forEach((el, i) => { if (t.statLabels[i]) el.textContent = t.statLabels[i]; });
+      sValues.forEach((el, i) => { if (t.statValues[i]) el.textContent = t.statValues[i]; });
+
+      // Book section
+      document.querySelector('#book h2').textContent = t.bookH2;
+      document.querySelector('#book .section-hint').textContent = t.bookHint;
+      const bBtns = document.querySelectorAll('#book .book-controls .book-btn');
+      if (bBtns.length >= 2) {
+        bBtns[0].textContent = t.bookBtns[0];
+        bBtns[1].textContent = t.bookBtns[1];
+      }
+      const activeBookList = lang === 'de' ? deBookPages : (lang === 'zh' ? zhBookPages : enBookPages);
+      for (let i = 0; i < bookPages.length; i++) {
+        bookPages[i] = activeBookList[i];
+      }
+      renderBookPage();
+
+      // Energy section
+      document.querySelector('#energy h2').textContent = t.energyH2;
+      document.querySelector('#energy .section-hint').textContent = t.energyHint;
+      document.querySelector('#energy .energy-box h3').textContent = t.energyGameH3;
+      document.querySelector('#energy .energy-box > p').textContent = t.energyGameP;
+      const pBtns = document.querySelectorAll('#energy .power-btn');
+      pBtns.forEach((b, i) => { if (t.powerBtns[i]) b.textContent = t.powerBtns[i]; });
+      const eCards = document.querySelectorAll('#energy .grid .card');
+      eCards.forEach((c, i) => {
+        if (t.energyCards[i]) {
+          c.querySelector('h3').textContent = t.energyCards[i][0];
+          c.querySelector('p').textContent = t.energyCards[i][1];
+        }
+      });
+
+      // Games section
+      document.querySelector('#game h2').textContent = t.gameH2;
+      document.querySelector('#game .game-box h3').textContent = t.g1Title;
+      document.querySelector('#game .game-box > p').textContent = t.g1Desc;
+      const arcadeBoxes = document.querySelectorAll('#game .arcade-grid > div');
+      arcadeBoxes.forEach((box, i) => {
+        if (t.arcadeTitles[i]) box.querySelector('h3').textContent = t.arcadeTitles[i];
+        if (t.arcadeDescs[i]) box.querySelector('p').textContent = t.arcadeDescs[i];
+      });
+
+      const activeQuizList = lang === 'de' ? deQuizQuestions : (lang === 'zh' ? zhQuizQuestions : enQuizQuestions);
+      for (let i = 0; i < quizQuestions.length; i++) {
+        quizQuestions[i] = activeQuizList[i];
+      }
+      restartQuiz();
+
+      // Favorites section
+      document.querySelector('#favorites h2').textContent = t.favH2;
+      document.querySelector('#favorites .section-hint').textContent = t.favHint;
+      const fCards = document.querySelectorAll('#favorites .grid .card');
+      fCards.forEach((c, i) => {
+        if (t.favCards[i]) {
+          c.querySelector('h3').textContent = t.favCards[i][0];
+          c.querySelector('p').textContent = t.favCards[i][1];
+        }
+      });
+
+      // High-Five & Footer
+      document.querySelector('#contact h2').textContent = t.hfH2;
+      document.querySelector('#contact .highfive-box p').textContent = t.hfP;
+      document.querySelector('footer p').textContent = t.footer;
     }
 
     function drawLegoShip(x, y, showWings, showShield) {
